@@ -1,6 +1,8 @@
 package sqlEntity;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -12,8 +14,10 @@ import java.util.List;
 public class Directories extends IdTable {
 
     @Column(nullable = false)
+    @Type(type ="text")
     private String path;
     @Column
+    @Type(type ="text")
     private String description;
 
 

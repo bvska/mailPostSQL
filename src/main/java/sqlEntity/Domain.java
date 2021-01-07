@@ -1,6 +1,8 @@
 package sqlEntity;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,12 +12,14 @@ public class Domain extends IdTable {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Client client;
+    private Client fk_tb_client;
 
     @Column(nullable = false)
+    @Type(type ="text")
     private String name;
 
     @Column
+    @Type(type ="text")
     private String description;
 
     @OneToMany (mappedBy = "fk_tb_domain")
@@ -28,7 +32,7 @@ public class Domain extends IdTable {
     }
 
     public Domain(Client client, String name, String description) {
-        this.client = client;
+        this.fk_tb_client = client;
         this.name = name;
         this.description = description;
     }

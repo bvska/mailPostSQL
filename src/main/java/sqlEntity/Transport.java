@@ -1,6 +1,8 @@
 package sqlEntity;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Transport extends IdTable {
     private char transport;
 
     @Column
+    @Type(type ="text")
     private String description;
 
     public Transport() {

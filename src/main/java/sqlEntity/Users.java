@@ -1,6 +1,8 @@
 package sqlEntity;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,7 @@ import javax.persistence.*;
 public class Users extends IdTable {
 
     @Column(nullable = false)
+    @Type(type ="text")
     private String email;
 
     @ManyToOne
@@ -23,8 +26,10 @@ public class Users extends IdTable {
     @Column(nullable = false)
     private Boolean bool_gadmin = false;
     @Column(nullable = false)
+    @Type(type ="text")
     private String passwd;
     @Column
+    @Type(type ="text")
     private String description;
 
     public Users() {

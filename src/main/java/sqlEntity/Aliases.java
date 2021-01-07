@@ -1,6 +1,8 @@
 package sqlEntity;
 
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,10 +12,13 @@ import javax.persistence.Table;
 public class Aliases extends IdTable {
 
     @Column (nullable = false)
+    @Type(type ="text")
     private String alias;
     @Column(nullable = false)
+    @Type(type ="text")
     private String rcpt;
     @Column
+    @Type(type ="text")
     private String description;
 
     public Aliases() {
