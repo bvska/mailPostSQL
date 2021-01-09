@@ -35,12 +35,12 @@ public class Users extends IdTable {
     public Users() {
     }
 
-    public Users(String email, Directories fk_tb_directories, Domain fk_tb_domain, Boolean bool_admin, Boolean bool_gadmin, String passwd, String description) {
+    public Users(String email, Directories fk_tb_directories, Domain fk_tb_domain, String passwd, String description) {
         this.email = email;
         this.fk_tb_directories = fk_tb_directories;
         this.fk_tb_domain = fk_tb_domain;
-        this.bool_admin = bool_admin;
-        this.bool_gadmin = bool_gadmin;
+        bool_admin = false;
+        bool_gadmin = false;
         this.passwd = passwd;
         this.description = description;
     }
