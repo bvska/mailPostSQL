@@ -1,12 +1,16 @@
 package swing;
 
+import start.ClientSay;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelC extends JPanel {
 
 
-
+    private ClientSay clientSay = new ClientSay();
     private JLabel label2 = new JLabel("Имя");
     private JLabel label3 = new JLabel("описание");
     private JLabel label5 = new JLabel("Имя");
@@ -15,7 +19,7 @@ public class PanelC extends JPanel {
     private Button searchButton = new Button("Показать");
     private Button updateButton = new Button("Обновить");
     private Button addButton = new Button("Добавить");
-    private Button DeleteButton = new Button("Удалить");
+    private Button deleteButton = new Button("Удалить");
     private JTextPane search = new JTextPane();
     private JTextField idUpdate = new JTextField(5);
     private JTextField nameUpdate = new JTextField(30);
@@ -25,7 +29,7 @@ public class PanelC extends JPanel {
     private JTextField deleteId = new JTextField(30);
 
 
-    public void st(){
+    public void init(){
         setLayout(new GridBagLayout());
         add(label2, new GridBagConstraints(0, 0, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -51,12 +55,25 @@ public class PanelC extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(deleteId, new GridBagConstraints(0, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(DeleteButton, new GridBagConstraints(2, 5, 1, 1, 1, 1,
+        add(deleteButton, new GridBagConstraints(2, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(searchButton, new GridBagConstraints(0, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(search, new GridBagConstraints(1, 6, 3, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
+    }
+
+    public void st(){
+        init();
+        deleteButton.addActionListener(new DeleteButtonActionListener());
+    }
+
+    class DeleteButtonActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int i = Integer.parseInt(deleteId.getText());
+            clientSay.say(i);
+        }
     }
 
 }

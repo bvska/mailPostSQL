@@ -3,11 +3,14 @@ package dao;
 import sqlEntity.Users;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 public class UsersDao implements Dao<Users, Integer>{
 
-    private EntityManager manager;
+    private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
+    private EntityManager manager = factory.createEntityManager();
 
     public UsersDao(EntityManager manager) {
         this.manager = manager;
@@ -15,7 +18,9 @@ public class UsersDao implements Dao<Users, Integer>{
 
     @Override
     public void add(Users users) {
+        manager.getTransaction().begin();
         manager.persist(users);
+        manager.getTransaction().commit();
 
     }
 
@@ -25,7 +30,12 @@ public class UsersDao implements Dao<Users, Integer>{
     }
 
     @Override
-    public void delete(Integer integer) {
+    public void deleteByPK(Integer integer) {
+
+    }
+
+    @Override
+    public void delete(Users users) {
 
     }
 }

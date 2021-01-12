@@ -1,9 +1,13 @@
 package swing;
 
+import sqlEntity.Users;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelU extends JPanel {
+
+
     private JLabel label1 = new JLabel("Email");
     private JLabel label2 = new JLabel("Домен_Id");
     private JLabel label3 = new JLabel("Email");
@@ -107,4 +111,10 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
 
     }
+
+    public void addUsers(){
+//        Users users = new Users(emailAdd.getText(), dirAdd.getText(), domAdd.getText(), passAdd.getText(), descriptionAdd.getText());
+//        users = (emailAdd.getText(), dirAdd.getText(), domAdd.getText(), passAdd.getText(), descriptionAdd.getText());
+    }
+
 }
