@@ -28,6 +28,7 @@ public class PanelC extends JPanel {
     private JTextField nameAdd = new JTextField(30);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(30);
+    private JTextPane info = new JTextPane();
 
 
     public void init(){
@@ -62,6 +63,8 @@ public class PanelC extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(search, new GridBagConstraints(1, 6, 3, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
+        add(info, new GridBagConstraints(0, 7, 5, 1, 1, 1,
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
     }
 
     public void st(){
@@ -82,12 +85,10 @@ public class PanelC extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (descriptionAdd.getText().equals(null)){
-                System.out.println(nameAdd.getText());
             clientSay.sayAdd(new Client(nameAdd.getText()));
             }
             else {
-                clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText()));
-                System.out.println(nameAdd.getText() + " " + descriptionAdd.getText());
+                info.setText(clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
             }
         }
     }

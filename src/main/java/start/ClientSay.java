@@ -2,7 +2,6 @@ package start;
 
 import dao.ClientDao;
 import session.Connect;
-import session.CreateManager;
 import sqlEntity.Client;
 
 import javax.persistence.EntityManager;
@@ -22,9 +21,10 @@ public class ClientSay {
         connect.stop();
     }
 
-    public void sayAdd(Client client){
+    public String sayAdd(Client client){
         connect.run();
         clientDao.add(client);
         connect.stop();
+        return "Добавлено";
     }
 }

@@ -23,6 +23,7 @@ public class Client extends IdTable {
     @OneToMany(mappedBy = "fk_tb_client")
     private List<Domain> domainList;
 
+
     public Client() {
     }
 
@@ -41,20 +42,24 @@ public class Client extends IdTable {
     }
 
     public void setName(String name) {
-        if (name == null || name.trim().length() < 3) throw new IllegalArgumentException("мя должно быть не менее 3х символов");
+        if (name == null || name.trim().length() < 3) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
+        public String getDescription() {
+            return description;
+        }
 
-    @Override
+
+        @Override
     public String toString() {
         return "Client{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
+                "name='" +  getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
                 '}';
     }
 
 }
+
+
+
