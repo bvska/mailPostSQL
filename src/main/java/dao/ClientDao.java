@@ -10,9 +10,9 @@ public class ClientDao implements Dao<Client, Integer>{
 
     private EntityManager manager;
 
-//    public ClientDao(EntityManager manager){
-//        this.manager = manager;
-//    }
+    public ClientDao(EntityManager manager){
+        this.manager = manager;
+    }
 
     @Override
     public void add(Client client) {
@@ -26,6 +26,7 @@ public class ClientDao implements Dao<Client, Integer>{
 
     @Override
     public void delete(Client client) {
+        System.out.println(client);
         manager.remove(client);
     }
 
@@ -34,6 +35,7 @@ public class ClientDao implements Dao<Client, Integer>{
         Client client = getPK(integer);
         if (client != null) {
             delete(client);
+            System.out.println(client);
     }}
 
     public Client getPK(Integer integer){

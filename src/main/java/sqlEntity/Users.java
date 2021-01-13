@@ -39,8 +39,6 @@ public class Users extends IdTable {
         this.email = email;
         this.fk_tb_directories = fk_tb_directories;
         this.fk_tb_domain = fk_tb_domain;
-        bool_admin = false;
-        bool_gadmin = false;
         this.passwd = passwd;
         this.description = description;
     }

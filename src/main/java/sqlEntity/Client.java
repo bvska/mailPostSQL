@@ -34,4 +34,13 @@ public class Client extends IdTable {
     public Client(String name) {
         this.name = name;
     }
+
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

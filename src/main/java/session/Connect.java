@@ -1,17 +1,19 @@
 package session;
 
+import sqlEntity.Client;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Connect {
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
-       EntityManager manager = factory.createEntityManager();
+    private EntityManager manager;
 
-     public void run(){
-         manager.getTransaction().begin();
+    public Connect(EntityManager manager) {
+        this.manager = manager;
+    }
 
-     }
+    public void run(){manager.getTransaction().begin(); }
 
      public void stop(){
          manager.getTransaction().commit();

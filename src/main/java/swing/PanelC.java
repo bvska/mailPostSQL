@@ -82,10 +82,12 @@ public class PanelC extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (descriptionAdd.getText().equals(null)){
+                System.out.println(nameAdd.getText());
             clientSay.sayAdd(new Client(nameAdd.getText()));
             }
             else {
                 clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText()));
+                System.out.println(nameAdd.getText() + " " + descriptionAdd.getText());
             }
         }
     }
