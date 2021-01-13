@@ -10,8 +10,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ClientSay {
-    EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
-    EntityManager manager = factory.createEntityManager();
+    private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
+    private EntityManager manager = factory.createEntityManager();
 
     private ClientDao clientDao = new ClientDao(manager);
     private Connect connect = new Connect(manager);

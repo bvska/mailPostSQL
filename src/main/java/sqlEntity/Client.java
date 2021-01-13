@@ -27,14 +27,27 @@ public class Client extends IdTable {
     }
 
     public Client(String name, String description) {
-        this.name = name;
+        setName(name);
         this.description = description;
     }
 
     public Client(String name) {
+        setName(name);
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.trim().length() < 3) throw new IllegalArgumentException("мя должно быть не менее 3х символов");
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
     @Override
     public String toString() {
@@ -43,4 +56,5 @@ public class Client extends IdTable {
                 ", description='" + description + '\'' +
                 '}';
     }
+
 }

@@ -42,4 +42,40 @@ public class Users extends IdTable {
         this.passwd = passwd;
         this.description = description;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Directories getFk_tb_directories() {
+        return fk_tb_directories;
+    }
+
+    public void setFk_tb_directories(Directories fk_tb_directories) {
+        this.fk_tb_directories = fk_tb_directories;
+    }
+
+    public Domain getFk_tb_domain() {
+        return fk_tb_domain;
+    }
+
+    public void setFk_tb_domain(Domain fk_tb_domain) {
+        this.fk_tb_domain = fk_tb_domain;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
