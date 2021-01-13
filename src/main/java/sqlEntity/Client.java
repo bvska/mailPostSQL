@@ -14,13 +14,13 @@ import java.util.List;
 public class Client extends IdTable {
 
     @Column(nullable = false)
-    @Type(type ="text")
+    @Type(type = "text")
     private String name;
     @Column
-    @Type(type ="text")
+    @Type(type = "text")
     private String description;
 
-    @OneToMany (mappedBy = "fk_tb_client")
+    @OneToMany(mappedBy = "fk_tb_client")
     private List<Domain> domainList;
 
     public Client() {
@@ -29,5 +29,9 @@ public class Client extends IdTable {
     public Client(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Client(String name) {
+        this.name = name;
     }
 }

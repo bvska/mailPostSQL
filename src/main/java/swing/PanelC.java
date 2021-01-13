@@ -1,5 +1,6 @@
 package swing;
 
+import sqlEntity.Client;
 import start.ClientSay;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class PanelC extends JPanel {
 
-
+    private Client client;
     private ClientSay clientSay = new ClientSay();
     private JLabel label2 = new JLabel("Имя");
     private JLabel label3 = new JLabel("описание");
@@ -66,13 +67,26 @@ public class PanelC extends JPanel {
     public void st(){
         init();
         deleteButton.addActionListener(new DeleteButtonActionListener());
+        addButton.addActionListener(new AddButtonActionListener());
     }
 
     class DeleteButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            int i = Integer.parseInt(deleteId.getText());
-            clientSay.say(i);
+            clientSay.say(Integer.parseInt(deleteId.getText()));
+        }
+    }
+
+
+    class AddButtonActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (descriptionAdd.getText().equals(null)){
+            clientSay.sayAdd(new Client(nameAdd.getText()));
+            }
+            else {
+                clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText()));
+            }
         }
     }
 
