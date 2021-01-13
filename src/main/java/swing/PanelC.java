@@ -71,6 +71,7 @@ public class PanelC extends JPanel {
         init();
         deleteButton.addActionListener(new DeleteButtonActionListener());
         addButton.addActionListener(new AddButtonActionListener());
+        searchButton.addActionListener(new SearchButtonActionListener());
     }
 
     class DeleteButtonActionListener implements ActionListener{
@@ -90,6 +91,13 @@ public class PanelC extends JPanel {
             else {
                 info.setText(clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
             }
+        }
+    }
+
+    class  SearchButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            search.setText( clientSay.saySearch().toString());
         }
     }
 
