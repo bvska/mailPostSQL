@@ -17,16 +17,24 @@ public class ClientSay {
     private Connect connect = new Connect(manager);
 
     public void say(Integer integer){
-        connect.run();
-        clientDao.deleteByPK(integer);
-        connect.stop();
+        try {
+            connect.run();
+            clientDao.deleteByPK(integer);
+            connect.stop();
+        } catch (Exception e) {connect.back();}
+
     }
 
     public String sayAdd(Client client){
-        connect.run();
-        clientDao.add(client);
-        connect.stop();
-        return "Добавлено";
+        try {
+            connect.run();
+            clientDao.add(client);
+            connect.stop();
+            return "Добавлено";
+        } catch (Exception e) {connect.back();
+            return " Не Добавлено";}
+
+
     }
 
     public List<Client> saySearch(){
@@ -34,5 +42,13 @@ public class ClientSay {
         List<Client> clients = clientDao.getAll();
         connect.stop();
         return clients;
+    }
+
+    public void sayUpdate(Client client){
+        try {
+            connect.run();
+            clientDao.update(client);
+            connect.stop();
+        } catch (Exception e) {connect.back();}
     }
 }

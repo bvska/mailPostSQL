@@ -72,6 +72,7 @@ public class PanelC extends JPanel {
         deleteButton.addActionListener(new DeleteButtonActionListener());
         addButton.addActionListener(new AddButtonActionListener());
         searchButton.addActionListener(new SearchButtonActionListener());
+        updateButton.addActionListener(new UpdateButtonActionListener());
     }
 
     class DeleteButtonActionListener implements ActionListener{
@@ -85,11 +86,13 @@ public class PanelC extends JPanel {
     class AddButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (descriptionAdd.getText().equals(null)){
+            if (descriptionAdd == null){
             clientSay.sayAdd(new Client(nameAdd.getText()));
             }
             else {
                 info.setText(clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
+              //  Thread.sleep(5000);
+
             }
         }
     }
@@ -98,6 +101,14 @@ public class PanelC extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             search.setText( clientSay.saySearch().toString());
+        }
+    }
+
+    class UpdateButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+         //   if(descriptionAdd == null){            }
+            clientSay.sayUpdate(new Client(nameUpdate.getText(),descriptionUpdate.getText()));
         }
     }
 

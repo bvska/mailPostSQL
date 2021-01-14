@@ -14,7 +14,7 @@ public class Domain extends IdTable {
     @JoinColumn(nullable = false)
     private Client fk_tb_client;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @Type(type ="text")
     private String name;
 

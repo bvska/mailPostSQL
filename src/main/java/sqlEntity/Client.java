@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "tb_client")
 public class Client extends IdTable {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @Type(type = "text")
     private String name;
     @Column

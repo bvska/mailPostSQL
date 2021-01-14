@@ -19,4 +19,6 @@ public class Connect {
          manager.getTransaction().commit();
      }
 
+     public void back(){manager.getTransaction().rollback();}
+
 }
