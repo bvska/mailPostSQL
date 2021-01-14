@@ -28,7 +28,7 @@ public class Users extends IdTable {
     @Column(nullable = false)
     @Type(type ="text")
     private String passwd;
-    @Column
+    @Column(unique = true)
     @Type(type ="text")
     private String description;
 

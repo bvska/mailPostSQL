@@ -24,8 +24,7 @@ public class UsersDao implements Dao<Users, Integer>{
 
     }
 
-    @Override
-    public void update(Users users) {
+    public void update(Integer integer, String s) {
 
     }
 

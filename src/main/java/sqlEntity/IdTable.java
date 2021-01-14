@@ -13,5 +13,5 @@ public abstract class IdTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public int getId(){ return id;}
+    public  int getId(){ return id;}
 }

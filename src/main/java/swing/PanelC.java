@@ -2,19 +2,18 @@ package swing;
 
 import sqlEntity.Client;
 import start.ClientSay;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class PanelC extends JPanel {
 
-    private Client client;
     private ClientSay clientSay = new ClientSay();
     private JLabel label2 = new JLabel("Имя");
     private JLabel label3 = new JLabel("описание");
-    private JLabel label5 = new JLabel("Имя");
+    private JLabel label5 = new JLabel("Id объекта");
     private JLabel label7 = new JLabel("описание");
     private JLabel label4 = new JLabel("Id объекта");
     private Button searchButton = new Button("Показать");
@@ -23,9 +22,9 @@ public class PanelC extends JPanel {
     private Button deleteButton = new Button("Удалить");
     private JTextPane search = new JTextPane();
     private JTextField idUpdate = new JTextField(5);
-    private JTextField nameUpdate = new JTextField(30);
+    private JTextField nameUpdate = new JTextField(5);
     private JTextField descriptionUpdate = new JTextField(30);
-    private JTextField nameAdd = new JTextField(30);
+    private JTextField nameAdd = new JTextField(5);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(30);
     private JTextPane info = new JTextPane();
@@ -78,7 +77,7 @@ public class PanelC extends JPanel {
     class DeleteButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            clientSay.say(Integer.parseInt(deleteId.getText()));
+            clientSay.sayDelete(Integer.parseInt(deleteId.getText()));
         }
     }
 
@@ -100,15 +99,14 @@ public class PanelC extends JPanel {
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            search.setText( clientSay.saySearch().toString());
+            search.setText(clientSay.saySearch().toString());
         }
     }
 
     class UpdateButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-         //   if(descriptionAdd == null){            }
-            clientSay.sayUpdate(new Client(nameUpdate.getText(),descriptionUpdate.getText()));
+            clientSay.sayUpdate(Integer.parseInt(nameUpdate.getText()), descriptionUpdate.getText());
         }
     }
 

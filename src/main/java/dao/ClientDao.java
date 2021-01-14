@@ -8,9 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.MapJoin;
 import javax.persistence.criteria.Root;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 public class ClientDao implements Dao<Client, Integer>{
 
@@ -25,9 +27,11 @@ public class ClientDao implements Dao<Client, Integer>{
         manager.persist(client);
     }
 
-    @Override
-    public void update(Client client) {
-        manager.merge(client);
+    public void update(Integer integer, String s) {
+        Client client = getPK(integer);
+        if (client != null) {
+            client.setDescription(s);
+        manager.merge(client);}
     }
 
     @Override
@@ -41,7 +45,7 @@ public class ClientDao implements Dao<Client, Integer>{
         Client client = getPK(integer);
         if (client != null) {
             delete(client);
-            System.out.println(client);
+
     }}
 
     public Client getPK(Integer integer){
@@ -57,4 +61,6 @@ public class ClientDao implements Dao<Client, Integer>{
         List<Client> clients = query.getResultList();
         return clients;
     }
+
+
 }

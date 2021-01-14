@@ -1,51 +1,51 @@
 package start;
 
-import dao.ClientDao;
+import dao.AliasesDao;
 import session.Connect;
-import sqlEntity.Client;
-
+import sqlEntity.Aliases;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class ClientSay {
+public class AliasSay implements Say<Aliases>{
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
 
-    private ClientDao clientDao = new ClientDao(manager);
+    private AliasesDao aliasesDao = new AliasesDao(manager);
     private Connect connect = new Connect(manager);
 
+    @Override
     public void sayDelete(Integer integer){
         try {
             connect.run();
-            clientDao.deleteByPK(integer);
+            aliasesDao.deleteByPK(integer);
             connect.stop();
         } catch (Exception e) {connect.back();}
 
     }
 
-    public String sayAdd(Client client){
+    @Override
+    public void sayAdd(Aliases aliases){
         try {
             connect.run();
-            clientDao.add(client);
+            aliasesDao.add(aliases);
             connect.stop();
-            return "Добавлено";
-        } catch (Exception e) {connect.back();
-            return " Не Добавлено";}
+        } catch (Exception e) {connect.back(); }
     }
 
-    public List<Client> saySearch(){
+    @Override
+    public List<Aliases> saySearch(){
         connect.run();
-        List<Client> clients = clientDao.getAll();
+        List<Aliases> aliases = aliasesDao.getAll();
         connect.stop();
-        return clients;
+        return aliases;
     }
 
     public void sayUpdate(Integer integer, String s){
         try {
             connect.run();
-            clientDao.update(integer, s);
+            aliasesDao.update(integer, s);
             connect.stop();
         } catch (Exception e) {connect.back();}
     }

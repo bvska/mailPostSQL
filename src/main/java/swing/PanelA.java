@@ -2,6 +2,8 @@ package swing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelA extends JPanel {
     private JLabel label1 = new JLabel("Альяс");
@@ -23,10 +25,10 @@ public class PanelA extends JPanel {
     private Button searchButton = new Button("Найти");
     private Button addButton = new Button("Добавить");
     private Button updateButton = new Button("Обновить");
-    private Button DeleteButton = new Button("Удалить");
+    private Button deleteButton = new Button("Удалить");
     private JTextPane search = new JTextPane();
 
-    public void st() {
+    public void init() {
         setLayout(new GridBagLayout());
         add(label1, new GridBagConstraints(0, 0, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
@@ -68,7 +70,42 @@ public class PanelA extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(deleteId, new GridBagConstraints(0, 9, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(DeleteButton, new GridBagConstraints(3, 9, 1, 1, 2, 1,
+        add(deleteButton, new GridBagConstraints(3, 9, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+    }
+
+    public void st(){
+        init();
+        deleteButton.addActionListener(new DeleteButtonActionListener());
+        addButton.addActionListener(new AddButtonActionListener());
+        searchButton.addActionListener(new SearchButtonActionListener());
+        updateButton.addActionListener(new UpdateButtonActionListener());
+    }
+
+    class DeleteButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    class AddButtonActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+    class  SearchButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    class UpdateButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
     }
 }

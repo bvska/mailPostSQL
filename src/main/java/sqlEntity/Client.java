@@ -29,7 +29,7 @@ public class Client extends IdTable {
 
     public Client(String name, String description) {
         setName(name);
-        this.description = description;
+        setDescription(description);
     }
 
     public Client(String name) {
@@ -50,13 +50,13 @@ public class Client extends IdTable {
             return description;
         }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        @Override
+    @Override
     public String toString() {
-        return "Client{" +
-                "name='" +  getName() + '\'' +
-                ", description='" + getDescription() + '\'' +
-                '}';
+        return getId() + " " + getName() + "    " + getDescription() + "   " ;
     }
 
 }
