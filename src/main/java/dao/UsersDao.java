@@ -9,8 +9,8 @@ import javax.persistence.Persistence;
 
 public class UsersDao implements Dao<Users, Integer>{
 
-    private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
-    private EntityManager manager = factory.createEntityManager();
+
+    private EntityManager manager;
 
     public UsersDao(EntityManager manager) {
         this.manager = manager;

@@ -64,6 +64,8 @@ public class Aliases extends IdTable {
 
     @Override
     public String toString() {
-        return  getId() + " " + getAlias() + "    " + getRcpt() + "   " + getDescription() + "   ";
+        return  getId() + " " + getAlias() + "    " + getRcpt() + "   " + getDescription() + "   " + '\n';
     }
+
+
 }

@@ -1,11 +1,16 @@
 package swing;
 
+import sqlEntity.Aliases;
+import start.AliasSay;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelA extends JPanel {
+
+    AliasSay aliasSay = new AliasSay();
     private JLabel label1 = new JLabel("Альяс");
     private JLabel label2 = new JLabel("Получатель");
     private JLabel label3 = new JLabel("Альяс");
@@ -26,7 +31,8 @@ public class PanelA extends JPanel {
     private Button addButton = new Button("Добавить");
     private Button updateButton = new Button("Обновить");
     private Button deleteButton = new Button("Удалить");
-    private JTextPane search = new JTextPane();
+    private JTextArea search = new JTextArea(10, 20);
+    private JScrollPane pane = new JScrollPane(search);
 
     public void init() {
         setLayout(new GridBagLayout());
@@ -40,7 +46,7 @@ public class PanelA extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
         add(searchButton, new GridBagConstraints(3, 1, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-        add(search, new GridBagConstraints(0, 2, 4, 2, 1, 1,
+        add(pane, new GridBagConstraints(0, 10, 4, 15, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label3, new GridBagConstraints(0, 4, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
@@ -84,20 +90,25 @@ public class PanelA extends JPanel {
 
     class DeleteButtonActionListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
-
+        public void actionPerformed(ActionEvent e) {aliasSay.sayDelete(Integer.parseInt(deleteId.getText()));
+            }
         }
-    }
 
     class AddButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            if (descriptionAdd == null){
+                aliasSay.sayAdd(new Aliases(aliasAdd.getText(), rcptAdd.getText()));
+            }
+            else {
+                aliasSay.sayAdd(new Aliases(aliasAdd.getText(), rcptAdd.getText(), descriptionAdd.getText()));
+            }
         }
     }
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+                search.setText(aliasSay.saySearch().toString());
 
         }
     }

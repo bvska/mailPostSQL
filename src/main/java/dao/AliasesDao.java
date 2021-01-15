@@ -18,6 +18,7 @@ public class AliasesDao implements Dao<Aliases, Integer> {
 
     @Override
     public void add(Aliases aliases) {
+        manager.persist(aliases);
 
     }
 
