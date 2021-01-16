@@ -1,12 +1,15 @@
 package dao;
 
 import sqlEntity.Aliases;
+import sqlEntity.Aliases_;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AliasesDao implements Dao<Aliases, Integer> {
@@ -33,10 +36,16 @@ public class AliasesDao implements Dao<Aliases, Integer> {
 
     @Override
     public void deleteByPK(Integer integer) {
+        Aliases aliases = getPK(integer);
+        if (aliases != null) {
+            delete(aliases);
+
+        }
     }
 
     @Override
     public void delete(Aliases aliases) {
+        manager.remove(aliases);
     }
 
     public Aliases getPK(Integer integer) {
@@ -52,4 +61,30 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         List<Aliases> aliases = query.getResultList();
         return aliases;
     }
+
+
+
+    public List<Aliases> getAliases(String name){
+        List<Aliases> aliasesList = new ArrayList<>();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Aliases> criteriaQuery = builder.createQuery(Aliases.class);
+        Root<Aliases> root = criteriaQuery.from(Aliases.class);
+        String s = '%' + name + '%';
+        criteriaQuery.select(root).where(builder.like(root.get(Aliases_.alias), s));
+        TypedQuery<Aliases> query = manager.createQuery(criteriaQuery);
+        aliasesList = query.getResultList();
+        return aliasesList;
+    }
+    public List<Aliases> saySearchRcpt(String name){
+        List<Aliases> aliasesList = new ArrayList<>();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Aliases> criteriaQuery = builder.createQuery(Aliases.class);
+        Root<Aliases> root = criteriaQuery.from(Aliases.class);
+        String s = '%' + name + '%';
+        criteriaQuery.select(root).where(builder.like(root.get(Aliases_.rcpt), s));
+        TypedQuery<Aliases> query = manager.createQuery(criteriaQuery);
+        aliasesList = query.getResultList();
+        return aliasesList;
+    }
+
 }

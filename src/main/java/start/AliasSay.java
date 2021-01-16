@@ -49,4 +49,18 @@ public class AliasSay implements Say<Aliases>{
             connect.stop();
         } catch (Exception e) {connect.back();}
     }
+
+    public List<Aliases> saySearchAliases(String alias){
+        connect.run();
+        List<Aliases> aliases = aliasesDao.getAliases(alias);
+        connect.stop();
+        return aliases;
+    }
+
+    public List<Aliases> saySearchRcpt(String rcpt){
+        List<Aliases> aliases = aliasesDao.getAliases(rcpt);
+       return aliases;
+    }
+
+
 }

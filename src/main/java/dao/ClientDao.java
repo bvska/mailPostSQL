@@ -36,7 +36,6 @@ public class ClientDao implements Dao<Client, Integer>{
 
     @Override
     public void delete(Client client) {
-        System.out.println(client);
         manager.remove(client);
     }
 

@@ -21,7 +21,7 @@ public class PanelA extends JPanel {
     private JLabel label8 = new JLabel("Id");
     private JTextField aliasSearch = new JTextField(20);
     private JTextField rcptSearch = new JTextField(20);
-    private JTextField aliasAdd = new JTextField(20);
+    private JTextField aliasAdd = new JTextField(null, 20);
     private JTextField rcptAdd = new JTextField(20);
     private JTextField descriptionAdd = new JTextField(20);
     private JTextField idUpdate = new JTextField(5);
@@ -97,19 +97,17 @@ public class PanelA extends JPanel {
     class AddButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (descriptionAdd == null){
-                aliasSay.sayAdd(new Aliases(aliasAdd.getText(), rcptAdd.getText()));
-            }
-            else {
                 aliasSay.sayAdd(new Aliases(aliasAdd.getText(), rcptAdd.getText(), descriptionAdd.getText()));
-            }
         }
     }
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-                search.setText(aliasSay.saySearch().toString());
-
+            if (aliasSearch.getText().length() >= 1) {
+                search.setText(aliasSay.saySearchAliases(aliasSearch.getText()).toString());}
+           else if (rcptSearch.getText().length() >= 1){
+                search.setText(aliasSay.saySearchRcpt(rcptSearch.getText()).toString());}
+            else {search.setText(aliasSay.saySearch().toString());}
         }
     }
 

@@ -56,7 +56,7 @@ public class Client extends IdTable {
 
     @Override
     public String toString() {
-        return getId() + " " + getName() + "    " + getDescription() + "   " ;
+        return getId() + " " + getName() + "    " + getDescription()   + '\n';
     }
 
 }

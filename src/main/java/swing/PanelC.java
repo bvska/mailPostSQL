@@ -20,7 +20,8 @@ public class PanelC extends JPanel {
     private Button updateButton = new Button("Обновить");
     private Button addButton = new Button("Добавить");
     private Button deleteButton = new Button("Удалить");
-    private JTextPane search = new JTextPane();
+    private JTextArea search = new JTextArea(10, 20);
+    private JScrollPane pane = new JScrollPane(search);
     private JTextField idUpdate = new JTextField(5);
     private JTextField nameUpdate = new JTextField(5);
     private JTextField descriptionUpdate = new JTextField(30);
@@ -58,12 +59,12 @@ public class PanelC extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(deleteButton, new GridBagConstraints(2, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(searchButton, new GridBagConstraints(0, 6, 1, 1, 1, 1,
+        add(searchButton, new GridBagConstraints(2, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(search, new GridBagConstraints(1, 6, 3, 1, 1, 1,
+        add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(info, new GridBagConstraints(0, 7, 5, 1, 1, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
+      //  add(info, new GridBagConstraints(0, 7, 5, 1, 1, 1,
+            //    GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
     }
 
     public void st(){
@@ -85,14 +86,10 @@ public class PanelC extends JPanel {
     class AddButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (descriptionAdd == null){
-            clientSay.sayAdd(new Client(nameAdd.getText()));
-            }
-            else {
                 info.setText(clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
               //  Thread.sleep(5000);
 
-            }
+
         }
     }
 
