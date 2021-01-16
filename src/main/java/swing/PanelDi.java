@@ -52,7 +52,7 @@ public class PanelDi extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(deleteButton, new GridBagConstraints(2, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(searchButton, new GridBagConstraints(5, 6, 1, 1, 1, 1,
+        add(searchButton, new GridBagConstraints(2, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));

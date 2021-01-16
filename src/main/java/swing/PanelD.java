@@ -65,7 +65,7 @@ public class PanelD extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
         add(updateButton, new GridBagConstraints(3, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
-        add(searchButton, new GridBagConstraints(5, 6, 1, 1, 1, 1,
+        add(searchButton, new GridBagConstraints(3, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
         add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));

@@ -58,7 +58,7 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(searchButton, new GridBagConstraints(5, 1, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(pane, new GridBagConstraints(0, 11, 4, 15, 2, 1,
+        add(pane, new GridBagConstraints(0, 11, 6, 15, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label3, new GridBagConstraints(0, 4, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
