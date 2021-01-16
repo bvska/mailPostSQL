@@ -1,6 +1,7 @@
 package swing;
 
 import sqlEntity.Aliases;
+import start.DomainSay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelD extends JPanel {
+
+    private DomainSay domainSay = new DomainSay();
     private JLabel label1 = new JLabel("Клиент Id");
     private JLabel label2 = new JLabel("имя домена");
     private JLabel label3 = new JLabel("описание");
@@ -84,7 +87,7 @@ public class PanelD extends JPanel {
     class DeleteButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            domainSay.sayDelete(Integer.parseInt(deleteId.getText()));
         }
     }
 

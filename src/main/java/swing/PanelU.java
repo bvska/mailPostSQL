@@ -1,6 +1,7 @@
 package swing;
 
 import sqlEntity.Users;
+import start.UsersSay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class PanelU extends JPanel {
 
-
+    private UsersSay usersSay = new UsersSay();
     private JLabel label1 = new JLabel("Email");
     private JLabel label2 = new JLabel("Домен_Id");
     private JLabel label3 = new JLabel("Email");
@@ -128,7 +129,7 @@ public class PanelU extends JPanel {
     class DeleteButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            usersSay.sayDelete(Integer.parseInt(deleteId.getText()));
         }
     }
 

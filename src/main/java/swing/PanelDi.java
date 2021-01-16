@@ -1,11 +1,15 @@
 package swing;
 
+import start.DirectoriesSay;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelDi extends JPanel {
+
+    private DirectoriesSay directoriesSay = new DirectoriesSay();
     private JLabel label2 = new JLabel("Путь");
     private JLabel label3 = new JLabel("описание");
     private JLabel label5 = new JLabel("Путь");
@@ -69,7 +73,7 @@ public class PanelDi extends JPanel {
     class DeleteButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            directoriesSay.sayDelete(Integer.parseInt(deleteId.getText()));
         }
     }
 

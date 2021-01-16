@@ -1,5 +1,8 @@
 package swing;
 
+import sqlEntity.Transport;
+import start.TransportSay;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -11,7 +14,7 @@ import static javax.swing.GroupLayout.Alignment.LEADING;
 
 public class PanelT extends JPanel {
 
-
+    private TransportSay transportSay = new TransportSay();
     private JLabel label1 = new JLabel("Домен Id");
     private JLabel label2 = new JLabel("протокол");
     private JLabel label3 = new JLabel("описание");
@@ -88,7 +91,7 @@ public class PanelT extends JPanel {
     class DeleteButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            transportSay.sayDelete(Integer.parseInt(deleteId.getText()));
         }
     }
 
