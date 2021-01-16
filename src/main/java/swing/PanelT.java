@@ -3,6 +3,8 @@ package swing;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static javax.swing.GroupLayout.Alignment.BASELINE;
 import static javax.swing.GroupLayout.Alignment.LEADING;
@@ -20,8 +22,7 @@ public class PanelT extends JPanel {
     private Button searchButton = new Button("Показать");
     private Button updateButton = new Button("Обновить");
     private Button addButton = new Button("Добавить");
-    private Button DeleteButton = new Button("Удалить");
-    private JTextPane search = new JTextPane();
+    private Button deleteButton = new Button("Удалить");
     private JTextField idUpdate = new JTextField(5);
     private JTextField nameUpdate = new JTextField(30);
     private JTextField descriptionUpdate = new JTextField(30);
@@ -29,8 +30,10 @@ public class PanelT extends JPanel {
     private JTextField nameAdd = new JTextField(15);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(5);
+    private JTextArea search = new JTextArea(10, 20);
+    private JScrollPane pane = new JScrollPane(search);
 
-    public void st(){
+    public void init(){
         setLayout(new GridBagLayout());
         add(label5, new GridBagConstraints(0, 0, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -50,7 +53,7 @@ public class PanelT extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
         add(deleteId, new GridBagConstraints(0, 3, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
-        add(DeleteButton, new GridBagConstraints(3, 3, 1, 1, 1, 1,
+        add(deleteButton, new GridBagConstraints(3, 3, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
         add(label1, new GridBagConstraints(0, 4, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -66,12 +69,47 @@ public class PanelT extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
         add(updateButton, new GridBagConstraints(3, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
-        add(searchButton, new GridBagConstraints(0, 6, 1, 1, 1, 1,
+        add(searchButton, new GridBagConstraints(5, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
-        add(search, new GridBagConstraints(1, 6, 3, 1, 1, 1,
+        add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
 
 
+    }
+
+    public void st(){
+        init();
+        deleteButton.addActionListener(new PanelT.DeleteButtonActionListener());
+        addButton.addActionListener(new PanelT.AddButtonActionListener());
+        searchButton.addActionListener(new PanelT.SearchButtonActionListener());
+        updateButton.addActionListener(new PanelT.UpdateButtonActionListener());
+    }
+
+    class DeleteButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    class AddButtonActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+    class  SearchButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+
+    }
+
+    class UpdateButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
     }
 }
 

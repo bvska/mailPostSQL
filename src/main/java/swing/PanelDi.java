@@ -2,6 +2,8 @@ package swing;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelDi extends JPanel {
     private JLabel label2 = new JLabel("Путь");
@@ -12,16 +14,17 @@ public class PanelDi extends JPanel {
     private Button searchButton = new Button("Показать");
     private Button updateButton = new Button("Обновить");
     private Button addButton = new Button("Добавить");
-    private Button DeleteButton = new Button("Удалить");
-    private JTextPane search = new JTextPane();
+    private Button deleteButton = new Button("Удалить");
     private JTextField idUpdate = new JTextField(5);
     private JTextField pathUpdate = new JTextField(30);
     private JTextField descriptionUpdate = new JTextField(30);
     private JTextField pathAdd = new JTextField(30);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(30);
+    private JTextArea search = new JTextArea(10, 20);
+    private JScrollPane pane = new JScrollPane(search);
 
-    public void st() {
+    public void init() {
         setLayout(new GridBagLayout());
         add(label2, new GridBagConstraints(0, 0, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -47,11 +50,46 @@ public class PanelDi extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(deleteId, new GridBagConstraints(0, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(DeleteButton, new GridBagConstraints(2, 5, 1, 1, 1, 1,
+        add(deleteButton, new GridBagConstraints(2, 5, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(searchButton, new GridBagConstraints(0, 6, 1, 1, 1, 1,
+        add(searchButton, new GridBagConstraints(5, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(search, new GridBagConstraints(1, 6, 3, 1, 1, 1,
+        add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
+    }
+
+    public void st(){
+        init();
+        deleteButton.addActionListener(new PanelDi.DeleteButtonActionListener());
+        addButton.addActionListener(new PanelDi.AddButtonActionListener());
+        searchButton.addActionListener(new PanelDi.SearchButtonActionListener());
+        updateButton.addActionListener(new PanelDi.UpdateButtonActionListener());
+    }
+
+    class DeleteButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    class AddButtonActionListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+    class  SearchButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+
+    }
+
+    class UpdateButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        }
     }
 }

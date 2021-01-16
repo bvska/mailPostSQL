@@ -47,6 +47,7 @@ public class ClientDao implements Dao<Client, Integer>{
 
     }}
 
+    @Override
     public Client getPK(Integer integer){
         return manager.find(Client.class, integer);
     }

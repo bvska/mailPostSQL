@@ -48,6 +48,7 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         manager.remove(aliases);
     }
 
+    @Override
     public Aliases getPK(Integer integer) {
         return manager.find(Aliases.class, integer);
     }
