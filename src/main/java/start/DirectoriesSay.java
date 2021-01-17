@@ -15,7 +15,7 @@ public class DirectoriesSay implements Say<Directories>{
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
     private Connect connect = new Connect(manager);
-    DirectoriesDao directoriesDao = new DirectoriesDao(manager);
+    private DirectoriesDao directoriesDao = new DirectoriesDao(manager);
 
     @Override
     public List<Directories> saySearch() {

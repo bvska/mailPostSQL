@@ -4,6 +4,7 @@ package start;
 import dao.DomainDao;
 import session.Connect;
 import sqlEntity.Aliases;
+import sqlEntity.Client;
 import sqlEntity.Domain;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public class DomainSay implements Say<Domain>{
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
     private Connect connect = new Connect(manager);
-    DomainDao domainDao = new DomainDao(manager);
+    private DomainDao domainDao = new DomainDao(manager);
 
     @Override
     public List<Domain> saySearch() {
@@ -44,5 +45,10 @@ public class DomainSay implements Say<Domain>{
         } catch (Exception e) {connect.back();}
     }
 
-
+    public Domain saySearchId(Integer integer){
+        connect.run();
+        Domain domain = domainDao.getPK(integer);
+        connect.stop();
+        return domain;
+    }
 }

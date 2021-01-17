@@ -16,7 +16,7 @@ public class TransportSay implements Say<Transport>{
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
     private Connect connect = new Connect(manager);
-    TransportDao transportDao = new TransportDao(manager);
+    private TransportDao transportDao = new TransportDao(manager);
 
     @Override
     public List<Transport> saySearch() {

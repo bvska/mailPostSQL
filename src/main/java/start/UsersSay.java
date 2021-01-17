@@ -15,7 +15,7 @@ public class UsersSay implements Say<Users>{
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
     private Connect connect = new Connect(manager);
-    UsersDao usersDao = new UsersDao(manager);
+    private UsersDao usersDao = new UsersDao(manager);
 
     @Override
     public List<Users> saySearch() {

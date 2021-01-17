@@ -1,6 +1,8 @@
 package swing;
 
+import sqlEntity.Domain;
 import sqlEntity.Transport;
+import start.DomainSay;
 import start.TransportSay;
 
 import javax.swing.*;
@@ -96,15 +98,18 @@ public class PanelT extends JPanel {
     }
 
     class AddButtonActionListener implements ActionListener{
+        private Domain fk_tb_domain;
+        private DomainSay domainSay = new DomainSay();
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domenAdd.getText()));
+            transportSay.sayAdd(new Transport(fk_tb_domain, nameAdd.getText(), descriptionAdd.getText()));
         }
     }
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            search.setText(transportSay.saySearch().toString());
         }
 
     }
