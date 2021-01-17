@@ -86,10 +86,8 @@ public class PanelC extends JPanel {
     class AddButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-                info.setText(clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
+               clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText()));
               //  Thread.sleep(5000);
-
-
         }
     }
 

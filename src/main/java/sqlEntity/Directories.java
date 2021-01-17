@@ -31,4 +31,29 @@ public class Directories extends IdTable {
         this.path = path;
         this.description = description;
     }
+
+    public Directories(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return  getId() + "  "  +   getPath() + "  " + getDescription() + '\n';
+    }
 }

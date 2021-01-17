@@ -49,4 +49,11 @@ public class ClientSay {
             connect.stop();
         } catch (Exception e) {connect.back();}
     }
+
+    public Client saySearchId(Integer integer){
+        connect.run();
+        Client client = clientDao.getPK(integer);
+        connect.stop();
+        return client;
+    }
 }

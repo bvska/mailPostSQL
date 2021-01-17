@@ -100,6 +100,8 @@ public class PanelA extends JPanel {
                 aliasSay.sayAdd(new Aliases(aliasAdd.getText(), rcptAdd.getText(), descriptionAdd.getText()));
         }
     }
+
+
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

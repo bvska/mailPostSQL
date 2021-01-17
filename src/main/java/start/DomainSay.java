@@ -43,4 +43,6 @@ public class DomainSay implements Say<Domain>{
             connect.stop();
         } catch (Exception e) {connect.back();}
     }
+
+
 }

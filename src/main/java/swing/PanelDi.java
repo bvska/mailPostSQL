@@ -1,5 +1,6 @@
 package swing;
 
+import sqlEntity.Directories;
 import start.DirectoriesSay;
 
 import javax.swing.*;
@@ -80,13 +81,13 @@ public class PanelDi extends JPanel {
     class AddButtonActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            directoriesSay.sayAdd(new Directories(pathAdd.getText(), descriptionAdd.getText()));
         }
     }
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            search.setText(directoriesSay.saySearch().toString());
         }
 
     }

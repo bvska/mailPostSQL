@@ -1,6 +1,9 @@
 package swing;
 
 import sqlEntity.Aliases;
+import sqlEntity.Client;
+import sqlEntity.Domain;
+import start.ClientSay;
 import start.DomainSay;
 
 import javax.swing.*;
@@ -25,7 +28,7 @@ public class PanelD extends JPanel {
     private JTextField idUpdate = new JTextField(5);
     private JTextField nameUpdate = new JTextField(30);
     private JTextField descriptionUpdate = new JTextField(30);
-    private JTextField domenAdd = new JTextField(5);
+    private JTextField clientAdd = new JTextField(5);
     private JTextField nameAdd = new JTextField(15);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(5);
@@ -40,7 +43,7 @@ public class PanelD extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(label7, new GridBagConstraints(2, 0, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(domenAdd, new GridBagConstraints(0, 1, 1, 1, 1, 1,
+        add(clientAdd, new GridBagConstraints(0, 1, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(nameAdd, new GridBagConstraints(1, 1, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -92,15 +95,18 @@ public class PanelD extends JPanel {
     }
 
     class AddButtonActionListener implements ActionListener{
+        private Client fk_tb_client;
+        private ClientSay clientSay = new ClientSay();
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            fk_tb_client = clientSay.saySearchId(Integer.parseInt(clientAdd.getText()));
+            domainSay.sayAdd(new Domain(fk_tb_client, nameAdd.getText(), descriptionAdd.getText()));
         }
     }
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            search.setText(domainSay.saySearch().toString());
         }
 
     }

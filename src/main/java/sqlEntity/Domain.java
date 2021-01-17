@@ -31,9 +31,42 @@ public class Domain extends IdTable {
     public Domain() {
     }
 
-    public Domain(Client client, String name, String description) {
-        this.fk_tb_client = client;
+    public Domain(Client fk_tb_client, String name, String description) {
+        this.fk_tb_client = fk_tb_client;
+        setName(name);
+        setDescription(description);
+
+    }
+
+    public Domain(Client fk_tb_client, String name) {
+        this.fk_tb_client = fk_tb_client;
+        setName(name);
+    }
+
+    public Client getFk_tb_client() {
+        return fk_tb_client;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.trim().length() < 3) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return  getId() + "  "  +   getFk_tb_client().getId() + "  "  + getName() + "  "  + getDescription()  + '\n';
+
     }
 }

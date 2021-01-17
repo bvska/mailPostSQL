@@ -3,10 +3,7 @@ package sqlEntity;
 
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,7 +17,7 @@ public class Client extends IdTable {
     @Type(type = "text")
     private String description;
 
-    @OneToMany(mappedBy = "fk_tb_client")
+    @OneToMany(mappedBy = "fk_tb_client", fetch = FetchType.LAZY)
     private List<Domain> domainList;
 
 
