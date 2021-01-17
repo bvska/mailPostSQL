@@ -4,6 +4,7 @@ import dao.DirectoriesDao;
 import session.Connect;
 import sqlEntity.Aliases;
 import sqlEntity.Directories;
+import sqlEntity.Domain;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,5 +42,11 @@ public class DirectoriesSay implements Say<Directories>{
             directoriesDao.deleteByPK(integer);
             connect.stop();
         } catch (Exception e) {connect.back();}
+    }
+    public Directories saySearchId(Integer integer){
+        connect.run();
+        Directories directories = directoriesDao.getPK(integer);
+        connect.stop();
+        return directories;
     }
 }

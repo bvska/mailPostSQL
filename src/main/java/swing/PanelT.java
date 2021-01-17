@@ -31,7 +31,7 @@ public class PanelT extends JPanel {
     private JTextField idUpdate = new JTextField(5);
     private JTextField nameUpdate = new JTextField(30);
     private JTextField descriptionUpdate = new JTextField(30);
-    private JTextField domenAdd = new JTextField(5);
+    private JTextField domainAdd = new JTextField(5);
     private JTextField nameAdd = new JTextField(15);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(5);
@@ -46,7 +46,7 @@ public class PanelT extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(label7, new GridBagConstraints(2, 0, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(domenAdd, new GridBagConstraints(0, 1, 1, 1, 1, 1,
+        add(domainAdd, new GridBagConstraints(0, 1, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(nameAdd, new GridBagConstraints(1, 1, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -102,7 +102,7 @@ public class PanelT extends JPanel {
         private DomainSay domainSay = new DomainSay();
         @Override
         public void actionPerformed(ActionEvent e) {
-            fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domenAdd.getText()));
+            fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domainAdd.getText()));
             transportSay.sayAdd(new Transport(fk_tb_domain, nameAdd.getText(), descriptionAdd.getText()));
         }
     }

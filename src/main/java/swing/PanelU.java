@@ -1,6 +1,10 @@
 package swing;
 
+import sqlEntity.Directories;
+import sqlEntity.Domain;
 import sqlEntity.Users;
+import start.DirectoriesSay;
+import start.DomainSay;
 import start.UsersSay;
 
 import javax.swing.*;
@@ -25,10 +29,10 @@ public class PanelU extends JPanel {
     private JLabel label12 = new JLabel("Описание");
     private JLabel label13 = new JLabel("Id");
     private JTextField emailSearch = new JTextField(20);
-    private JTextField domenSearch = new JTextField(20);
+    private JTextField domainSearch = new JTextField(20);
     private JTextField emailAdd = new JTextField(20);
     private JTextField dirAdd = new JTextField(5);
-    private JTextField domAdd = new JTextField(5);
+    private JTextField domainAdd = new JTextField(5);
     private JTextField passAdd = new JTextField(20);
     private JTextField descriptionAdd = new JTextField(20);
     private JTextField emailUpdate = new JTextField(20);
@@ -45,8 +49,6 @@ public class PanelU extends JPanel {
     private JTextArea search = new JTextArea(10, 20);
     private JScrollPane pane = new JScrollPane(search);
 
-
-
     public void init(){
         setLayout(new GridBagLayout());
         add(label1, new GridBagConstraints(0, 0, 1, 1, 2, 1,
@@ -55,7 +57,7 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(emailSearch, new GridBagConstraints(0, 1, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(domenSearch, new GridBagConstraints(1, 1, 1, 1, 2, 1,
+        add(domainSearch, new GridBagConstraints(1, 1, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(searchButton, new GridBagConstraints(5, 1, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
@@ -75,7 +77,7 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(dirAdd, new GridBagConstraints(1, 5, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(domAdd, new GridBagConstraints(2, 5, 1, 1, 2, 1,
+        add(domainAdd, new GridBagConstraints(2, 5, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(passAdd, new GridBagConstraints(3, 5, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
@@ -116,7 +118,6 @@ public class PanelU extends JPanel {
 
     }
 
-
     public void st(){
         init();
         deleteButton.addActionListener(new PanelU.DeleteButtonActionListener());
@@ -124,7 +125,6 @@ public class PanelU extends JPanel {
         searchButton.addActionListener(new PanelU.SearchButtonActionListener());
         updateButton.addActionListener(new PanelU.UpdateButtonActionListener());
     }
-
 
     class DeleteButtonActionListener implements ActionListener {
         @Override
@@ -134,9 +134,15 @@ public class PanelU extends JPanel {
     }
 
     class AddButtonActionListener implements ActionListener{
+        private Directories fk_tb_directories;
+        private Domain fk_tb_domain;
+        private DomainSay domainSay = new DomainSay();
+        private DirectoriesSay directoriesSay = new DirectoriesSay();
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domainAdd.getText()));
+            fk_tb_directories = directoriesSay.saySearchId(Integer.parseInt(dirAdd.getText()));
+            usersSay.sayAdd(new Users(emailAdd.getText(), fk_tb_directories, fk_tb_domain, passAdd.getText(), descriptionAdd.getText()));
         }
     }
     class  SearchButtonActionListener implements ActionListener {
