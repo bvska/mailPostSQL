@@ -28,12 +28,12 @@ public class Directories extends IdTable {
     }
 
     public Directories(String path, String description) {
-        this.path = path;
-        this.description = description;
+        setPath(path);
+        setDescription(description);
     }
 
     public Directories(String path) {
-        this.path = path;
+        setPath(path);
     }
 
     public String getPath() {
@@ -41,6 +41,7 @@ public class Directories extends IdTable {
     }
 
     public void setPath(String path) {
+        if (path == null || path.trim().length() < 3) throw new IllegalArgumentException("Путь не может быть пустым");
         this.path = path;
     }
 

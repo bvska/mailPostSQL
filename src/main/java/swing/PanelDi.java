@@ -84,6 +84,7 @@ public class PanelDi extends JPanel {
             directoriesSay.sayAdd(new Directories(pathAdd.getText(), descriptionAdd.getText()));
         }
     }
+
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
