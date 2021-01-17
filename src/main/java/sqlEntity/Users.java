@@ -28,7 +28,7 @@ public class Users extends IdTable {
     @Column(nullable = false)
     @Type(type ="text")
     private String passwd;
-    @Column(unique = true)
+    @Column()
     @Type(type ="text")
     private String description;
 
@@ -41,6 +41,13 @@ public class Users extends IdTable {
         this.fk_tb_domain = fk_tb_domain;
       setPasswd(passwd);
         setDescription(description);
+    }
+
+    public Users(String email, Directories fk_tb_directories, Domain fk_tb_domain, String passwd) {
+        setEmail(email);
+        this.fk_tb_directories = fk_tb_directories;
+        this.fk_tb_domain = fk_tb_domain;
+        setPasswd(passwd);
     }
 
     public String getEmail() {
@@ -65,7 +72,7 @@ public class Users extends IdTable {
     }
 
     public void setPasswd(String passwd) {
-        if (email == null || email.trim().length() < 8) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
+        if (passwd == null || passwd.trim().length() < 8) throw new IllegalArgumentException("Требуется сложный пароль, сгенерируйте пароль");
         this.passwd = passwd;
     }
 
@@ -76,4 +83,9 @@ public class Users extends IdTable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return getId() + " " + getEmail() + "  " + getFk_tb_directories().getId() + " " + getFk_tb_domain().getId() + "  " + getPasswd() + "  " +
+                getDescription() + '\n';    }
 }

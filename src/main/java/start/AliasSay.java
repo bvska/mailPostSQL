@@ -58,7 +58,9 @@ public class AliasSay implements Say<Aliases>{
     }
 
     public List<Aliases> saySearchRcpt(String rcpt){
-        List<Aliases> aliases = aliasesDao.getAliases(rcpt);
+        connect.run();
+        List<Aliases> aliases = aliasesDao.saySearchRcpt(rcpt);
+        connect.stop();
        return aliases;
     }
 

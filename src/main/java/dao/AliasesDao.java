@@ -71,7 +71,7 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         CriteriaQuery<Aliases> criteriaQuery = builder.createQuery(Aliases.class);
         Root<Aliases> root = criteriaQuery.from(Aliases.class);
         String s = '%' + name + '%';
-        criteriaQuery.select(root).where(builder.like(root.get(Aliases_.alias), s));
+        criteriaQuery.select(root).where(builder.like(root.get(Aliases_.ALIAS), s));
         TypedQuery<Aliases> query = manager.createQuery(criteriaQuery);
         aliasesList = query.getResultList();
         return aliasesList;
@@ -82,7 +82,7 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         CriteriaQuery<Aliases> criteriaQuery = builder.createQuery(Aliases.class);
         Root<Aliases> root = criteriaQuery.from(Aliases.class);
         String s = '%' + name + '%';
-        criteriaQuery.select(root).where(builder.like(root.get(Aliases_.rcpt), s));
+        criteriaQuery.select(root).where(builder.like(root.get(Aliases_.RCPT), s));
         TypedQuery<Aliases> query = manager.createQuery(criteriaQuery);
         aliasesList = query.getResultList();
         return aliasesList;

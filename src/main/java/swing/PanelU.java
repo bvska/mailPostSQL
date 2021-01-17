@@ -51,17 +51,17 @@ public class PanelU extends JPanel {
 
     public void init(){
         setLayout(new GridBagLayout());
-        add(label1, new GridBagConstraints(0, 0, 1, 1, 2, 1,
+        add(label1, new GridBagConstraints(0, 11, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(label2, new GridBagConstraints(1, 0, 1, 1, 2, 1,
+        add(label2, new GridBagConstraints(1, 11, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(emailSearch, new GridBagConstraints(0, 1, 1, 1, 2, 1,
+        add(emailSearch, new GridBagConstraints(0, 12, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(domainSearch, new GridBagConstraints(1, 1, 1, 1, 2, 1,
+        add(domainSearch, new GridBagConstraints(1, 12, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(searchButton, new GridBagConstraints(5, 1, 1, 1, 2, 1,
+        add(searchButton, new GridBagConstraints(5, 12, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(pane, new GridBagConstraints(0, 11, 6, 15, 2, 1,
+        add(pane, new GridBagConstraints(0, 13, 6, 15, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label3, new GridBagConstraints(0, 4, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
@@ -148,6 +148,12 @@ public class PanelU extends JPanel {
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (emailSearch.getText().length() >= 1) {
+                search.setText(usersSay.saySearchEmail(emailSearch.getText()).toString());}
+            else if (domainSearch.getText().length() >= 1){
+                Integer i = Integer.parseInt(domainSearch.getText());
+                search.setText(usersSay.saySearchDomain(i).toString());}
+            else {search.setText(usersSay.saySearch().toString());}
 
         }
 

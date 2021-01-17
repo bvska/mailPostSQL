@@ -1,7 +1,6 @@
 package dao;
 
-import sqlEntity.Transport;
-import sqlEntity.Users;
+import sqlEntity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,7 +8,9 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -57,5 +58,27 @@ public class UsersDao implements Dao<Users, Integer>{
         TypedQuery<Users> query = manager.createQuery(criteriaQuery);
         List<Users> users = query.getResultList();
         return users;
+    }
+    public List<Users> getEmail(String name){
+        List<Users> usersList = new ArrayList<>();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Users> criteriaQuery = builder.createQuery(Users.class);
+        Root<Users> root = criteriaQuery.from(Users.class);
+        String s = '%' + name + '%';
+        criteriaQuery.select(root).where(builder.like(root.get(Users_.EMAIL), s));
+        TypedQuery<Users> query = manager.createQuery(criteriaQuery);
+        usersList = query.getResultList();
+        return usersList;
+    }
+    public List<Users> getDomain(Integer i){
+        List<Users> usersList = new ArrayList<>();
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Users> criteriaQuery = builder.createQuery(Users.class);
+        Root<Users> root = criteriaQuery.from(Users.class);
+        Predicate condition = builder.equal(root.get(Users_.fk_tb_domain), i);
+        criteriaQuery.select(root).where(condition);
+        TypedQuery<Users> query = manager.createQuery(criteriaQuery);
+        List<Users> users = query.getResultList();
+        return usersList;
     }
 }
