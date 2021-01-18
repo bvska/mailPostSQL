@@ -1,7 +1,7 @@
 package swing;
 
 import sqlEntity.Aliases;
-import start.AliasSay;
+import controler.AliasSay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +16,9 @@ public class PanelA extends JPanel {
     private JLabel label3 = new JLabel("Альяс");
     private JLabel label4 = new JLabel("Получатель");
     private JLabel label5 = new JLabel("Описание");
-    private JLabel label6 = new JLabel("Id");
+    private JLabel label6 = new JLabel("Id объекта");
     private JLabel label7 = new JLabel("Получатель");
-    private JLabel label8 = new JLabel("Id");
+    private JLabel label8 = new JLabel("Id объекта");
     private JTextField aliasSearch = new JTextField(20);
     private JTextField rcptSearch = new JTextField(20);
     private JTextField aliasAdd = new JTextField(null, 20);

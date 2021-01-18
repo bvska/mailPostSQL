@@ -1,4 +1,4 @@
-package start;
+package controler;
 
 import dao.UsersDao;
 import session.Connect;
@@ -7,7 +7,6 @@ import sqlEntity.Users;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class UsersSay implements Say<Users>{
@@ -43,6 +42,14 @@ public class UsersSay implements Say<Users>{
         } catch (Exception e) {connect.back();}
     }
 
+    public void sayUpdate(Users users) {
+        try {
+            connect.run();
+            usersDao.update(users);
+            connect.stop();
+        } catch (Exception e) {connect.back(); }
+    }
+
     public List<Users> saySearchEmail(String email){
         connect.run();
         List<Users> usersList = usersDao.getEmail(email);
@@ -53,6 +60,13 @@ public class UsersSay implements Say<Users>{
     public List<Users> saySearchDomain(Integer i){
         connect.run();
         List<Users> users = usersDao.getDomain(i);
+        connect.stop();
+        return users;
+    }
+
+    public Users saySearchId(Integer i) {
+        connect.run();
+        Users users = usersDao.getPK(i);
         connect.stop();
         return users;
     }

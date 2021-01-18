@@ -33,6 +33,11 @@ public class UsersDao implements Dao<Users, Integer>{
     }
 
     @Override
+    public void update(Users users) {
+        manager.merge(users);
+    }
+
+    @Override
     public void deleteByPK(Integer integer) {
         Users users = getPK(integer);
         if (users != null) {

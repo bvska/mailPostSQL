@@ -31,6 +31,11 @@ public class TransportDao implements Dao<Transport, Integer> {
     }
 
     @Override
+    public void update(Transport transport) {
+
+    }
+
+    @Override
     public void delete(Transport transport) {
         manager.remove(transport);
     }

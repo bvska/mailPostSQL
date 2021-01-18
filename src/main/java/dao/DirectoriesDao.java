@@ -33,6 +33,11 @@ public class DirectoriesDao implements Dao<Directories, Integer>{
     }
 
     @Override
+    public void update(Directories directories) {
+
+    }
+
+    @Override
     public void delete(Directories directories) {
         manager.remove(directories);
     }

@@ -3,9 +3,9 @@ package swing;
 import sqlEntity.Directories;
 import sqlEntity.Domain;
 import sqlEntity.Users;
-import start.DirectoriesSay;
-import start.DomainSay;
-import start.UsersSay;
+import controler.DirectoriesSay;
+import controler.DomainSay;
+import controler.UsersSay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,12 +22,12 @@ public class PanelU extends JPanel {
     private JLabel label5 = new JLabel("Домен_Id");
     private JLabel label6 = new JLabel("passwd");
     private JLabel label7 = new JLabel("Описание");
-    private JLabel label8 = new JLabel("Email");
+    private JLabel label8 = new JLabel("Id объекта");
     private JLabel label9 = new JLabel("Директория_Id");
     private JLabel label10 = new JLabel("Домен_Id");
     private JLabel label11 = new JLabel("passwd");
     private JLabel label12 = new JLabel("Описание");
-    private JLabel label13 = new JLabel("Id");
+    private JLabel label13 = new JLabel("Id объекта");
     private JTextField emailSearch = new JTextField(20);
     private JTextField domainSearch = new JTextField(20);
     private JTextField emailAdd = new JTextField(20);
@@ -89,10 +89,11 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label8, new GridBagConstraints(0, 7, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+     //           GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label9, new GridBagConstraints(1, 7, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(label10, new GridBagConstraints(2, 7, 1, 1, 2, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+     //   add(label10, new GridBagConstraints(2, 7, 1, 1, 2, 1,
+      //          GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label11, new GridBagConstraints(3, 7, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label12, new GridBagConstraints(4, 7, 1, 1, 2, 1,
@@ -101,8 +102,8 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(dirUpdate, new GridBagConstraints(1, 8, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(domUpdate, new GridBagConstraints(2, 8, 1, 1, 2, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+     //   add(domUpdate, new GridBagConstraints(2, 8, 1, 1, 2, 1,
+    //            GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(passUpdate, new GridBagConstraints(3, 8, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(descriptionUpdate, new GridBagConstraints(4, 8, 1, 1, 2, 1,
@@ -160,8 +161,19 @@ public class PanelU extends JPanel {
     }
 
     class UpdateButtonActionListener implements ActionListener {
+        private Directories fk_tb_directories;
+        private DirectoriesSay directoriesSay = new DirectoriesSay();
         @Override
         public void actionPerformed(ActionEvent e) {
+            Users users = usersSay.saySearchId(Integer.parseInt((emailUpdate.getText())));
+            if (dirUpdate.getText().length() >= 1){
+                fk_tb_directories = directoriesSay.saySearchId(Integer.parseInt(dirUpdate.getText()));
+            users.setFk_tb_directories(fk_tb_directories);}
+            if (passUpdate.getText().length() >= 1)
+            users.setPasswd(passUpdate.getText());
+            if (descriptionUpdate.getText().length() >= 1)
+            users.setDescription(descriptionUpdate.getText());
+            usersSay.sayUpdate(users);
         }
     }
 

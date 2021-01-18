@@ -1,7 +1,7 @@
 package swing;
 
 import sqlEntity.Directories;
-import start.DirectoriesSay;
+import controler.DirectoriesSay;
 
 import javax.swing.*;
 import java.awt.*;

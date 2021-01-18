@@ -2,8 +2,8 @@ package swing;
 
 import sqlEntity.Domain;
 import sqlEntity.Transport;
-import start.DomainSay;
-import start.TransportSay;
+import controler.DomainSay;
+import controler.TransportSay;
 
 import javax.swing.*;
 
@@ -11,16 +11,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static javax.swing.GroupLayout.Alignment.BASELINE;
-import static javax.swing.GroupLayout.Alignment.LEADING;
-
 public class PanelT extends JPanel {
 
     private TransportSay transportSay = new TransportSay();
     private JLabel label1 = new JLabel("Домен Id");
     private JLabel label2 = new JLabel("протокол");
     private JLabel label3 = new JLabel("описание");
-    private JLabel label5 = new JLabel("Домен Id");
+    private JLabel label5 = new JLabel("Id объекта");
     private JLabel label6 = new JLabel("протокол");
     private JLabel label7 = new JLabel("описание");
     private JLabel label4 = new JLabel("Id объекта");

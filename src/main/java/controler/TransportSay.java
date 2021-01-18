@@ -1,36 +1,34 @@
-package start;
+package controler;
 
-import dao.DirectoriesDao;
+import dao.TransportDao;
 import session.Connect;
-import sqlEntity.Aliases;
-import sqlEntity.Directories;
-import sqlEntity.Domain;
+import sqlEntity.Transport;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class DirectoriesSay implements Say<Directories>{
+public class TransportSay implements Say<Transport>{
 
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
     private Connect connect = new Connect(manager);
-    private DirectoriesDao directoriesDao = new DirectoriesDao(manager);
+    private TransportDao transportDao = new TransportDao(manager);
 
     @Override
-    public List<Directories> saySearch() {
+    public List<Transport> saySearch() {
         connect.run();
-        List<Directories> directories = directoriesDao.getAll();
+        List<Transport> transports = transportDao.getAll();
         connect.stop();
-        return directories;
+        return transports;
     }
 
     @Override
-    public void sayAdd(Directories directories) {
+    public void sayAdd(Transport transport) {
         try {
             connect.run();
-            directoriesDao.add(directories);
+            transportDao.add(transport);
             connect.stop();
         } catch (Exception e) {connect.back(); }
     }
@@ -39,14 +37,8 @@ public class DirectoriesSay implements Say<Directories>{
     public void sayDelete(Integer integer) {
         try {
             connect.run();
-            directoriesDao.deleteByPK(integer);
+            transportDao.deleteByPK(integer);
             connect.stop();
         } catch (Exception e) {connect.back();}
-    }
-    public Directories saySearchId(Integer integer){
-        connect.run();
-        Directories directories = directoriesDao.getPK(integer);
-        connect.stop();
-        return directories;
     }
 }

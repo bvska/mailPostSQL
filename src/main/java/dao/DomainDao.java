@@ -27,6 +27,11 @@ public class DomainDao implements Dao<Domain, Integer>{
     }
 
     @Override
+    public void update(Domain domain) {
+
+    }
+
+    @Override
     public void deleteByPK(Integer integer) {
         Domain domain = getPK(integer);
         if (domain != null) {

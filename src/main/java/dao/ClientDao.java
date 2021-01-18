@@ -35,6 +35,11 @@ public class ClientDao implements Dao<Client, Integer>{
     }
 
     @Override
+    public void update(Client client) {
+
+    }
+
+    @Override
     public void delete(Client client) {
         manager.remove(client);
     }

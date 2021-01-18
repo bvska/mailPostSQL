@@ -1,36 +1,35 @@
-package start;
+package controler;
 
-import dao.TransportDao;
+
+import dao.DomainDao;
 import session.Connect;
-import sqlEntity.Aliases;
 import sqlEntity.Domain;
-import sqlEntity.Transport;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class TransportSay implements Say<Transport>{
+public class DomainSay implements Say<Domain>{
 
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
     private Connect connect = new Connect(manager);
-    private TransportDao transportDao = new TransportDao(manager);
+    private DomainDao domainDao = new DomainDao(manager);
 
     @Override
-    public List<Transport> saySearch() {
+    public List<Domain> saySearch() {
         connect.run();
-        List<Transport> transports = transportDao.getAll();
+        List<Domain> domains = domainDao.getAll();
         connect.stop();
-        return transports;
+        return domains;
     }
 
     @Override
-    public void sayAdd(Transport transport) {
+    public void sayAdd(Domain domain) {
         try {
             connect.run();
-            transportDao.add(transport);
+            domainDao.add(domain);
             connect.stop();
         } catch (Exception e) {connect.back(); }
     }
@@ -39,8 +38,15 @@ public class TransportSay implements Say<Transport>{
     public void sayDelete(Integer integer) {
         try {
             connect.run();
-            transportDao.deleteByPK(integer);
+            domainDao.deleteByPK(integer);
             connect.stop();
         } catch (Exception e) {connect.back();}
+    }
+
+    public Domain saySearchId(Integer integer){
+        connect.run();
+        Domain domain = domainDao.getPK(integer);
+        connect.stop();
+        return domain;
     }
 }

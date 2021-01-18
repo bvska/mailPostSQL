@@ -1,6 +1,4 @@
-package start;
-
-import sqlEntity.Client;
+package controler;
 
 import java.util.List;
 

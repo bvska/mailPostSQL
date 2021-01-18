@@ -6,4 +6,5 @@ public interface Dao<T, PK> {
     void deleteByPK(PK pk);
     void delete(T t);
     T getPK(PK pk);
+    void update(T t);
 }

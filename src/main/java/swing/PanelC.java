@@ -1,7 +1,7 @@
 package swing;
 
 import sqlEntity.Client;
-import start.ClientSay;
+import controler.ClientSay;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,10 +1,9 @@
 package swing;
 
-import sqlEntity.Aliases;
 import sqlEntity.Client;
 import sqlEntity.Domain;
-import start.ClientSay;
-import start.DomainSay;
+import controler.ClientSay;
+import controler.DomainSay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +16,7 @@ public class PanelD extends JPanel {
     private JLabel label1 = new JLabel("Клиент Id");
     private JLabel label2 = new JLabel("имя домена");
     private JLabel label3 = new JLabel("описание");
-    private JLabel label5 = new JLabel("Клиент Id");
+    private JLabel label5 = new JLabel("Id объекта");
     private JLabel label6 = new JLabel("имя домена");
     private JLabel label7 = new JLabel("описание");
     private JLabel label4 = new JLabel("Id объекта");

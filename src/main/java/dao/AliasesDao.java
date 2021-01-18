@@ -25,6 +25,11 @@ public class AliasesDao implements Dao<Aliases, Integer> {
 
     }
 
+    @Override
+    public void update(Aliases aliases) {
+
+    }
+
     public void update(Integer integer, String s) {
         Aliases aliases = getPK(integer);
         if (aliases != null) {

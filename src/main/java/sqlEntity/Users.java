@@ -6,7 +6,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_users")
+@Table(name = "tb_users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email", "fk_tb_domain_id"})})
 public class Users extends IdTable {
 
     @Column(nullable = false)
@@ -45,7 +45,7 @@ public class Users extends IdTable {
 
     public Users(String email, Directories fk_tb_directories, Domain fk_tb_domain, String passwd) {
         setEmail(email);
-        this.fk_tb_directories = fk_tb_directories;
+        setFk_tb_directories(fk_tb_directories);
         this.fk_tb_domain = fk_tb_domain;
         setPasswd(passwd);
     }
@@ -69,6 +69,10 @@ public class Users extends IdTable {
 
     public String getPasswd() {
         return passwd;
+    }
+
+    public void setFk_tb_directories(Directories fk_tb_directories) {
+        this.fk_tb_directories = fk_tb_directories;
     }
 
     public void setPasswd(String passwd) {
