@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "tb_aliases")
 public class Aliases extends IdTable {
 
-    @Column (nullable = false, unique = true)
+    @Column (nullable = false, unique = true )
     @Type(type ="text")
     private String alias;
     @Column(nullable = false)

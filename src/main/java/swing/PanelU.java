@@ -14,6 +14,10 @@ import java.awt.event.ActionListener;
 
 public class PanelU extends JPanel {
 
+    private Domain fk_tb_domain;
+    private DomainSay domainSay = new DomainSay();
+    private Directories fk_tb_directories;
+    private DirectoriesSay directoriesSay = new DirectoriesSay();
     private UsersSay usersSay = new UsersSay();
     private JLabel label1 = new JLabel("Email");
     private JLabel label2 = new JLabel("Домен_Id");
@@ -24,7 +28,6 @@ public class PanelU extends JPanel {
     private JLabel label7 = new JLabel("Описание");
     private JLabel label8 = new JLabel("Id объекта");
     private JLabel label9 = new JLabel("Директория_Id");
-    private JLabel label10 = new JLabel("Домен_Id");
     private JLabel label11 = new JLabel("passwd");
     private JLabel label12 = new JLabel("Описание");
     private JLabel label13 = new JLabel("Id объекта");
@@ -37,7 +40,6 @@ public class PanelU extends JPanel {
     private JTextField descriptionAdd = new JTextField(20);
     private JTextField emailUpdate = new JTextField(20);
     private JTextField dirUpdate = new JTextField(5);
-    private JTextField domUpdate = new JTextField(5);
     private JTextField passUpdate = new JTextField(20);
     private JTextField descriptionUpdate = new JTextField(20);
     private JTextField deleteId = new JTextField(5);
@@ -89,11 +91,8 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label8, new GridBagConstraints(0, 7, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-     //           GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label9, new GridBagConstraints(1, 7, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-     //   add(label10, new GridBagConstraints(2, 7, 1, 1, 2, 1,
-      //          GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label11, new GridBagConstraints(3, 7, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label12, new GridBagConstraints(4, 7, 1, 1, 2, 1,
@@ -102,8 +101,6 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(dirUpdate, new GridBagConstraints(1, 8, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-     //   add(domUpdate, new GridBagConstraints(2, 8, 1, 1, 2, 1,
-    //            GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(passUpdate, new GridBagConstraints(3, 8, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(descriptionUpdate, new GridBagConstraints(4, 8, 1, 1, 2, 1,
@@ -135,10 +132,6 @@ public class PanelU extends JPanel {
     }
 
     class AddButtonActionListener implements ActionListener{
-        private Directories fk_tb_directories;
-        private Domain fk_tb_domain;
-        private DomainSay domainSay = new DomainSay();
-        private DirectoriesSay directoriesSay = new DirectoriesSay();
         @Override
         public void actionPerformed(ActionEvent e) {
             fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domainAdd.getText()));
@@ -155,14 +148,10 @@ public class PanelU extends JPanel {
                 Integer i = Integer.parseInt(domainSearch.getText());
                 search.setText(usersSay.saySearchDomain(i).toString());}
             else {search.setText(usersSay.saySearch().toString());}
-
         }
-
     }
 
     class UpdateButtonActionListener implements ActionListener {
-        private Directories fk_tb_directories;
-        private DirectoriesSay directoriesSay = new DirectoriesSay();
         @Override
         public void actionPerformed(ActionEvent e) {
             Users users = usersSay.saySearchId(Integer.parseInt((emailUpdate.getText())));
