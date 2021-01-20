@@ -3,6 +3,8 @@ package controler;
 import dao.AliasesDao;
 import session.Connect;
 import sqlEntity.Aliases;
+import sqlEntity.Users;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,10 +44,10 @@ public class AliasSay implements Say<Aliases>{
         return aliases;
     }
 
-    public void sayUpdate(Integer integer, String s){
+    public void sayUpdate(Aliases aliases){
         try {
             connect.run();
-            aliasesDao.update(integer, s);
+            aliasesDao.update(aliases);
             connect.stop();
         } catch (Exception e) {connect.back();}
     }
@@ -62,6 +64,13 @@ public class AliasSay implements Say<Aliases>{
         List<Aliases> aliases = aliasesDao.saySearchRcpt(rcpt);
         connect.stop();
        return aliases;
+    }
+
+    public Aliases saySearchId(Integer i) {
+        connect.run();
+        Aliases aliases = aliasesDao.getPK(i);
+        connect.stop();
+        return aliases;
     }
 
 

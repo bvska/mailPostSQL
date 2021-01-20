@@ -123,6 +123,13 @@ public class PanelA extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             Aliases aliases = aliasSay.saySearchId(Integer.parseInt((idUpdate.getText())));
+            if (rcptUpdate.getText().length() >= 1){
+                aliases.setRcpt(rcptUpdate.getText());}
+            if (descriptionUpdate.getText().length() >= 1){
+                aliases.setDescription(descriptionUpdate.getText());}
+            aliasSay.sayUpdate(aliases);
+
+
         }
     }
 }

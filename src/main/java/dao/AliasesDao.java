@@ -1,7 +1,6 @@
 package dao;
 
 import sqlEntity.Aliases;
-import sqlEntity.Aliases_;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -27,16 +26,8 @@ public class AliasesDao implements Dao<Aliases, Integer> {
 
     @Override
     public void update(Aliases aliases) {
-
     }
 
-    public void update(Integer integer, String s) {
-        Aliases aliases = getPK(integer);
-        if (aliases != null) {
-       //     aliases.setDescription(s);
-            manager.merge(aliases);
-        }
-    }
 
 
     @Override
@@ -44,7 +35,6 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         Aliases aliases = getPK(integer);
         if (aliases != null) {
             delete(aliases);
-
         }
     }
 
