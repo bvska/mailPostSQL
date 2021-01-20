@@ -3,6 +3,7 @@ package controler;
 
 import dao.DomainDao;
 import session.Connect;
+import sqlEntity.Aliases;
 import sqlEntity.Domain;
 
 import javax.persistence.EntityManager;
@@ -48,5 +49,13 @@ public class DomainSay implements Say<Domain>{
         Domain domain = domainDao.getPK(integer);
         connect.stop();
         return domain;
+    }
+
+    public void sayUpdate(Domain domain){
+        try {
+            connect.run();
+            domainDao.update(domain);
+            connect.stop();
+        } catch (Exception e) {connect.back();}
     }
 }

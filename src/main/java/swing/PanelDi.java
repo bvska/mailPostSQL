@@ -2,6 +2,7 @@ package swing;
 
 import sqlEntity.Directories;
 import controler.DirectoriesSay;
+import sqlEntity.Domain;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public class PanelDi extends JPanel {
     private DirectoriesSay directoriesSay = new DirectoriesSay();
     private JLabel label2 = new JLabel("Путь");
     private JLabel label3 = new JLabel("описание");
-    private JLabel label5 = new JLabel("Путь");
+    private JLabel label5 = new JLabel("Id объекта");
     private JLabel label7 = new JLabel("описание");
     private JLabel label4 = new JLabel("Id объекта");
     private Button searchButton = new Button("Показать");
@@ -21,7 +22,6 @@ public class PanelDi extends JPanel {
     private Button addButton = new Button("Добавить");
     private Button deleteButton = new Button("Удалить");
     private JTextField idUpdate = new JTextField(5);
-    private JTextField pathUpdate = new JTextField(30);
     private JTextField descriptionUpdate = new JTextField(30);
     private JTextField pathAdd = new JTextField(30);
     private JTextField descriptionAdd = new JTextField(30);
@@ -45,7 +45,7 @@ public class PanelDi extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(label7, new GridBagConstraints(1, 2, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-        add(pathUpdate, new GridBagConstraints(0, 3, 1, 1, 2, 1,
+        add(idUpdate, new GridBagConstraints(0, 3, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(descriptionUpdate, new GridBagConstraints(1, 3, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
@@ -96,6 +96,9 @@ public class PanelDi extends JPanel {
     class UpdateButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            Directories directories = directoriesSay.saySearchId(Integer.parseInt((idUpdate.getText())));
+            directories.setDescription(descriptionUpdate.getText());
+            directoriesSay.sayUpdate(directories);
         }
     }
 }

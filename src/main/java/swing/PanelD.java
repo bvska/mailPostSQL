@@ -1,5 +1,6 @@
 package swing;
 
+import sqlEntity.Aliases;
 import sqlEntity.Client;
 import sqlEntity.Domain;
 import controler.ClientSay;
@@ -12,6 +13,8 @@ import java.awt.event.ActionListener;
 
 public class PanelD extends JPanel {
 
+    private Client fk_tb_client;
+    private ClientSay clientSay = new ClientSay();
     private DomainSay domainSay = new DomainSay();
     private JLabel label1 = new JLabel("Клиент Id");
     private JLabel label2 = new JLabel("имя домена");
@@ -94,8 +97,6 @@ public class PanelD extends JPanel {
     }
 
     class AddButtonActionListener implements ActionListener{
-        private Client fk_tb_client;
-        private ClientSay clientSay = new ClientSay();
         @Override
         public void actionPerformed(ActionEvent e) {
             fk_tb_client = clientSay.saySearchId(Integer.parseInt(clientAdd.getText()));
@@ -113,6 +114,11 @@ public class PanelD extends JPanel {
     class UpdateButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            Domain domain = domainSay.saySearchId(Integer.parseInt((idUpdate.getText())));
+            if (nameUpdate.getText().length() >= 1){
+                domain.setName(nameUpdate.getText());}
+            domain.setDescription(descriptionUpdate.getText());
+            domainSay.sayUpdate(domain);
         }
     }
 }

@@ -2,6 +2,7 @@ package controler;
 
 import dao.DirectoriesDao;
 import session.Connect;
+import sqlEntity.Aliases;
 import sqlEntity.Directories;
 
 import javax.persistence.EntityManager;
@@ -46,5 +47,13 @@ public class DirectoriesSay implements Say<Directories>{
         Directories directories = directoriesDao.getPK(integer);
         connect.stop();
         return directories;
+    }
+
+    public void sayUpdate(Directories directories){
+        try {
+            connect.run();
+            directoriesDao.update(directories);
+            connect.stop();
+        } catch (Exception e) {connect.back();}
     }
 }

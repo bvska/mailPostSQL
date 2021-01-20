@@ -32,6 +32,7 @@ public class TransportDao implements Dao<Transport, Integer> {
 
     @Override
     public void update(Transport transport) {
+        manager.merge(transport);
 
     }
 

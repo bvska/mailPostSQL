@@ -16,9 +16,9 @@
 
         <properties>
             <!--строка подключения к бд-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/lessons"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/maildb"/>
             <!--логин пользователя бд-->
-            <property name="javax.persistence.jdbc.user" value="bvs"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
             <!-- пароль пользователя бд-->
             <property name="javax.persistence.jdbc.password" value="gthtdthnsi12"/>
             <!--используемый драйвер-->

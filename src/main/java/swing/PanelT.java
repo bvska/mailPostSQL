@@ -14,10 +14,10 @@ import java.awt.event.ActionListener;
 public class PanelT extends JPanel {
 
     private TransportSay transportSay = new TransportSay();
-    private JLabel label1 = new JLabel("Домен Id");
+    private JLabel label1 = new JLabel("Id объекта");
     private JLabel label2 = new JLabel("протокол");
     private JLabel label3 = new JLabel("описание");
-    private JLabel label5 = new JLabel("Id объекта");
+    private JLabel label5 = new JLabel("Домен Id");
     private JLabel label6 = new JLabel("протокол");
     private JLabel label7 = new JLabel("описание");
     private JLabel label4 = new JLabel("Id объекта");
@@ -114,6 +114,11 @@ public class PanelT extends JPanel {
     class UpdateButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            Transport transport = transportSay.saySearchId(Integer.parseInt((idUpdate.getText())));
+            if (nameUpdate.getText().length() >= 1){
+                transport.setTransport(nameUpdate.getText());}
+            transport.setDescription(descriptionUpdate.getText());
+            transportSay.sayUpdate(transport);
         }
     }
 }

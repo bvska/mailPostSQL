@@ -2,6 +2,7 @@ package controler;
 
 import dao.TransportDao;
 import session.Connect;
+import sqlEntity.Aliases;
 import sqlEntity.Transport;
 
 import javax.persistence.EntityManager;
@@ -40,5 +41,20 @@ public class TransportSay implements Say<Transport>{
             transportDao.deleteByPK(integer);
             connect.stop();
         } catch (Exception e) {connect.back();}
+    }
+
+    public void sayUpdate(Transport transport){
+        try {
+            connect.run();
+            transportDao.update(transport);
+            connect.stop();
+        } catch (Exception e) {connect.back();}
+    }
+
+    public Transport saySearchId(Integer i) {
+        connect.run();
+        Transport transport = transportDao.getPK(i);
+        connect.stop();
+        return transport;
     }
 }

@@ -160,7 +160,6 @@ public class PanelU extends JPanel {
             users.setFk_tb_directories(fk_tb_directories);}
             if (passUpdate.getText().length() >= 1)
             users.setPasswd(passUpdate.getText());
-            if (descriptionUpdate.getText().length() >= 1)
             users.setDescription(descriptionUpdate.getText());
             usersSay.sayUpdate(users);
         }

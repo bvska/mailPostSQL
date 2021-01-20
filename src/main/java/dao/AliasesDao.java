@@ -1,12 +1,12 @@
 package dao;
 
 import sqlEntity.Aliases;
+import sqlEntity.Aliases_;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +21,12 @@ public class AliasesDao implements Dao<Aliases, Integer> {
     @Override
     public void add(Aliases aliases) {
         manager.persist(aliases);
-
     }
 
     @Override
     public void update(Aliases aliases) {
+        manager.merge(aliases);
     }
-
-
 
     @Override
     public void deleteByPK(Integer integer) {
@@ -48,7 +46,7 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         return manager.find(Aliases.class, integer);
     }
 
-    public List<Aliases> getAll(){
+    public List<Aliases> getAll() {
         CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder();
         CriteriaQuery<Aliases> criteriaQuery = criteriaBuilder.createQuery(Aliases.class);
         Root<Aliases> root = criteriaQuery.from(Aliases.class);
@@ -59,8 +57,7 @@ public class AliasesDao implements Dao<Aliases, Integer> {
     }
 
 
-
-    public List<Aliases> getAliases(String name){
+    public List<Aliases> getAliases(String name) {
         List<Aliases> aliasesList = new ArrayList<>();
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Aliases> criteriaQuery = builder.createQuery(Aliases.class);
@@ -71,7 +68,8 @@ public class AliasesDao implements Dao<Aliases, Integer> {
         aliasesList = query.getResultList();
         return aliasesList;
     }
-    public List<Aliases> saySearchRcpt(String name){
+
+    public List<Aliases> saySearchRcpt(String name) {
         List<Aliases> aliasesList = new ArrayList<>();
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Aliases> criteriaQuery = builder.createQuery(Aliases.class);

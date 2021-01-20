@@ -36,7 +36,7 @@ public class ClientDao implements Dao<Client, Integer>{
 
     @Override
     public void update(Client client) {
-
+        manager.merge(client);
     }
 
     @Override
@@ -49,7 +49,6 @@ public class ClientDao implements Dao<Client, Integer>{
         Client client = getPK(integer);
         if (client != null) {
             delete(client);
-
     }}
 
     @Override

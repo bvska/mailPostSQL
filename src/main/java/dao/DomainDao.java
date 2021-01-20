@@ -1,7 +1,5 @@
 package dao;
 
-
-import sqlEntity.Directories;
 import sqlEntity.Domain;
 
 
@@ -28,7 +26,7 @@ public class DomainDao implements Dao<Domain, Integer>{
 
     @Override
     public void update(Domain domain) {
-
+        manager.merge(domain);
     }
 
     @Override

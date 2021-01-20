@@ -34,6 +34,7 @@ public class DirectoriesDao implements Dao<Directories, Integer>{
 
     @Override
     public void update(Directories directories) {
+        manager.merge(directories);
 
     }
 
