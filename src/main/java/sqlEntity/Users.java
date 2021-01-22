@@ -2,8 +2,10 @@ package sqlEntity;
 
 
 import org.hibernate.annotations.Type;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 
 import javax.persistence.*;
+import javax.swing.*;
 
 @Entity
 @Table(name = "tb_users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email", "fk_tb_domain_id"})})
@@ -55,6 +57,8 @@ public class Users extends IdTable {
     }
 
     public void setEmail(String email) {
+        JOptionPane.showMessageDialog(null , "Имя должно быть не менее 3х символов","" ,JOptionPane.ERROR_MESSAGE);
+
         if (email == null || email.trim().length() < 3) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
         this.email = email;
     }
@@ -76,7 +80,10 @@ public class Users extends IdTable {
     }
 
     public void setPasswd(String passwd) {
-        if (passwd == null || passwd.trim().length() < 8) throw new IllegalArgumentException("Требуется сложный пароль, сгенерируйте пароль");
+        if (passwd == null || passwd.trim().length() < 8) {
+            JOptionPane.showMessageDialog(null , "Требуется сложный пароль, сгенерируйте пароль","" ,JOptionPane.ERROR_MESSAGE);
+            throw new IllegalArgumentException("Требуется сложный пароль, сгенерируйте пароль");
+            }
         this.passwd = passwd;
     }
 

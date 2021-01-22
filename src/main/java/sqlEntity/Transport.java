@@ -2,7 +2,6 @@ package sqlEntity;
 
 
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 
 @Entity

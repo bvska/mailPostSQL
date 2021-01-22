@@ -2,6 +2,7 @@ package controler;
 
 import dao.UsersDao;
 import session.Connect;
+import sqlEntity.Domain;
 import sqlEntity.Users;
 
 import javax.persistence.EntityManager;
@@ -57,9 +58,9 @@ public class UsersSay implements Say<Users>{
         return usersList;
     }
 
-    public List<Users> saySearchDomain(Integer i){
+    public List<Users> saySearchDomain(Domain domain){
         connect.run();
-        List<Users> users = usersDao.getDomain(i);
+        List<Users> users = usersDao.getDomain(domain);
         connect.stop();
         return users;
     }

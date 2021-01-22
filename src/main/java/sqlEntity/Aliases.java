@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.swing.*;
 
 @Entity
 @Table(name = "tb_aliases")
@@ -40,6 +41,7 @@ public class Aliases extends IdTable {
     }
 
     public void setAlias(String alias) {
+        JOptionPane.showMessageDialog(null , "Альяс не может быть короче 7 символов","" ,JOptionPane.ERROR_MESSAGE);
         if (alias == null || alias.trim().length() < 7) throw new IllegalArgumentException("Альяс не может быть короче 7 символов");
         this.alias = alias;
 
@@ -50,6 +52,7 @@ public class Aliases extends IdTable {
     }
 
     public void setRcpt(String rcpt) {
+        JOptionPane.showMessageDialog(null , "Поле не может быть пустым","" ,JOptionPane.ERROR_MESSAGE);
         if (rcpt == null || rcpt.trim().length() < 7) throw new IllegalArgumentException("Поле не может быть пустым");
         this.rcpt = rcpt;
     }

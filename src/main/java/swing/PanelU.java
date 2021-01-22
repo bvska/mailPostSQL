@@ -1,5 +1,7 @@
 package swing;
 
+import controler.AliasSay;
+import generator.PassGen;
 import sqlEntity.Directories;
 import sqlEntity.Domain;
 import sqlEntity.Users;
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 
 public class PanelU extends JPanel {
 
+    private AliasSay aliasSay = new AliasSay();
     private Domain fk_tb_domain;
     private DomainSay domainSay = new DomainSay();
     private Directories fk_tb_directories;
@@ -50,6 +53,7 @@ public class PanelU extends JPanel {
     private Button deleteButton = new Button("Удалить");
     private JTextArea search = new JTextArea(10, 20);
     private JScrollPane pane = new JScrollPane(search);
+    private JCheckBox jcheckAlias = new JCheckBox("создать альяс");
 
     public void init(){
         setLayout(new GridBagLayout());
@@ -87,6 +91,8 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(addButton, new GridBagConstraints(5, 5, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+        add(jcheckAlias, new GridBagConstraints(1, 6, 1, 1, 2, 1,
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(generateButton, new GridBagConstraints(3, 6, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label8, new GridBagConstraints(0, 7, 1, 1, 2, 1,
@@ -122,6 +128,7 @@ public class PanelU extends JPanel {
         addButton.addActionListener(new PanelU.AddButtonActionListener());
         searchButton.addActionListener(new PanelU.SearchButtonActionListener());
         updateButton.addActionListener(new PanelU.UpdateButtonActionListener());
+        generateButton.addActionListener((ae) -> passAdd.setText(PassGen.passGen()));
     }
 
     class DeleteButtonActionListener implements ActionListener {
@@ -137,16 +144,22 @@ public class PanelU extends JPanel {
             fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domainAdd.getText()));
             fk_tb_directories = directoriesSay.saySearchId(Integer.parseInt(dirAdd.getText()));
             usersSay.sayAdd(new Users(emailAdd.getText(), fk_tb_directories, fk_tb_domain, passAdd.getText(), descriptionAdd.getText()));
+
+            if (jcheckAlias.isSelected())
+                aliasSay.addAliases(emailAdd.getText(), fk_tb_domain.getName());
+            else return;
         }
     }
+
+
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (emailSearch.getText().length() >= 1) {
                 search.setText(usersSay.saySearchEmail(emailSearch.getText()).toString());}
             else if (domainSearch.getText().length() >= 1){
-                Integer i = Integer.parseInt(domainSearch.getText());
-                search.setText(usersSay.saySearchDomain(i).toString());}
+                fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domainSearch.getText()));
+                search.setText(usersSay.saySearchDomain(fk_tb_domain).toString());}
             else {search.setText(usersSay.saySearch().toString());}
         }
     }

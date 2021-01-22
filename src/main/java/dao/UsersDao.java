@@ -73,15 +73,15 @@ public class UsersDao implements Dao<Users, Integer>{
         usersList = query.getResultList();
         return usersList;
     }
-    public List<Users> getDomain(Integer i){
+    public List<Users> getDomain(Domain domain){
         List<Users> usersList = new ArrayList<>();
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Users> criteriaQuery = builder.createQuery(Users.class);
         Root<Users> root = criteriaQuery.from(Users.class);
-        Predicate condition = builder.equal(root.get(Users_.fk_tb_domain), i);
+        Predicate condition = builder.equal(root.get(Users_.fk_tb_domain), domain);
         criteriaQuery.select(root).where(condition);
         TypedQuery<Users> query = manager.createQuery(criteriaQuery);
-        List<Users> users = query.getResultList();
+         usersList = query.getResultList();
         return usersList;
     }
 }

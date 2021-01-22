@@ -74,4 +74,9 @@ public class AliasSay implements Say<Aliases>{
     }
 
 
+    public void addAliases(String email, String domain){
+        String address = email + "@" + domain;
+        sayAdd(new Aliases(address, address));
+    }
+
 }

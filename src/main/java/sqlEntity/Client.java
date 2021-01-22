@@ -4,6 +4,7 @@ package sqlEntity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.swing.*;
 import java.util.List;
 
 @Entity
@@ -39,6 +40,7 @@ public class Client extends IdTable {
     }
 
     public void setName(String name) {
+        JOptionPane.showMessageDialog(null , "Имя должно быть не менее 3х символов","" ,JOptionPane.ERROR_MESSAGE);
         if (name == null || name.trim().length() < 3) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
         this.name = name;
     }

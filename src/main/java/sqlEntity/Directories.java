@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.swing.*;
 import java.util.List;
 
 @Entity
@@ -41,6 +42,7 @@ public class Directories extends IdTable {
     }
 
     public void setPath(String path) {
+        JOptionPane.showMessageDialog(null , "Путь не может быть пустым","" ,JOptionPane.ERROR_MESSAGE);
         if (path == null || path.trim().length() < 3) throw new IllegalArgumentException("Путь не может быть пустым");
         this.path = path;
     }
