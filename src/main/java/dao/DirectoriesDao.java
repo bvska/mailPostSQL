@@ -1,9 +1,6 @@
 package dao;
 
 import sqlEntity.Directories;
-import sqlEntity.Transport;
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;

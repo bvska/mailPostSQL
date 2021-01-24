@@ -3,16 +3,13 @@ package dao;
 
 
 import sqlEntity.Client;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.MapJoin;
 import javax.persistence.criteria.Root;
-import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Map;
+
 
 public class ClientDao implements Dao<Client, Integer>{
 

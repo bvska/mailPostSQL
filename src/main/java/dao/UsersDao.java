@@ -1,7 +1,6 @@
 package dao;
 
 import sqlEntity.*;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;

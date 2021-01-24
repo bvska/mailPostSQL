@@ -1,8 +1,7 @@
 package dao;
 
-import sqlEntity.Aliases;
-import sqlEntity.Transport;
 
+import sqlEntity.Transport;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
