@@ -1,11 +1,12 @@
 package swing;
 
+
 import sqlEntity.Client;
 import controler.ClientSay;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
 
 public class PanelC extends JPanel {
@@ -20,8 +21,6 @@ public class PanelC extends JPanel {
     private Button updateButton = new Button("Обновить");
     private Button addButton = new Button("Добавить");
     private Button deleteButton = new Button("Удалить");
-    private JTextArea search = new JTextArea(10, 20);
-    private JScrollPane pane = new JScrollPane(search);
     private JTextField idUpdate = new JTextField(5);
     private JTextField nameUpdate = new JTextField(5);
     private JTextField descriptionUpdate = new JTextField(30);
@@ -29,7 +28,8 @@ public class PanelC extends JPanel {
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(30);
     private JTextPane info = new JTextPane();
-
+    private JTable table = new JTable();
+    private JScrollPane pane = new JScrollPane(table);
 
     public void init(){
         setLayout(new GridBagLayout());
@@ -62,47 +62,24 @@ public class PanelC extends JPanel {
         add(searchButton, new GridBagConstraints(2, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
         add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
-      //  add(info, new GridBagConstraints(0, 7, 5, 1, 1, 1,
-            //    GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 0));
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1,1,1,1), 0, 150));
     }
 
     public void st(){
         init();
-        deleteButton.addActionListener(new DeleteButtonActionListener());
-        addButton.addActionListener(new AddButtonActionListener());
-        searchButton.addActionListener(new SearchButtonActionListener());
-        updateButton.addActionListener(new UpdateButtonActionListener());
+        deleteButton.addActionListener((ae)-> clientSay.sayDelete(Integer.parseInt(deleteId.getText())));
+        addButton.addActionListener((ae)-> clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
+        searchButton.addActionListener((ae)-> showTable(clientSay.saySearch()));
+        updateButton.addActionListener((ae)-> clientSay.sayUpdate(Integer.parseInt(nameUpdate.getText()), descriptionUpdate.getText()));
     }
 
-    class DeleteButtonActionListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            clientSay.sayDelete(Integer.parseInt(deleteId.getText()));
+    public  void showTable(List<Client> clients){
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Id", "name", "desc"}, 0);
+        for (Client o : clients ) {
+            model.addRow(new Object[]{o.getId(), o.getName(),  o.getDescription()});
         }
+        table.setModel(model);
     }
 
-
-    class AddButtonActionListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-               clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText()));
-              //  Thread.sleep(5000);
-        }
-    }
-
-    class  SearchButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            search.setText(clientSay.saySearch().toString());
-        }
-    }
-
-    class UpdateButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            clientSay.sayUpdate(Integer.parseInt(nameUpdate.getText()), descriptionUpdate.getText());
-        }
-    }
 
 }

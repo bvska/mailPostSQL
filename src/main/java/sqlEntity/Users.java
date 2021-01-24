@@ -57,9 +57,10 @@ public class Users extends IdTable {
     }
 
     public void setEmail(String email) {
-        JOptionPane.showMessageDialog(null , "Имя должно быть не менее 3х символов","" ,JOptionPane.ERROR_MESSAGE);
-
-        if (email == null || email.trim().length() < 3) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
+        if (email == null || email.trim().length() < 3) {
+            JOptionPane.showMessageDialog(null , "Имя должно быть не менее 3х символов","" ,JOptionPane.ERROR_MESSAGE);
+            throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
+        }
         this.email = email;
     }
 

@@ -2,11 +2,12 @@ package swing;
 
 import sqlEntity.Aliases;
 import controler.AliasSay;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class PanelA extends JPanel {
 
@@ -33,8 +34,8 @@ public class PanelA extends JPanel {
     private Button addButton = new Button("Добавить");
     private Button updateButton = new Button("Обновить");
     private Button deleteButton = new Button("Удалить");
-    private JTextArea search = new JTextArea(10, 20);
-    private JScrollPane pane = new JScrollPane(search);
+    private JTable table = new JTable();
+    private JScrollPane pane = new JScrollPane(table);
 
     public void init() {
         setLayout(new GridBagLayout());
@@ -49,7 +50,7 @@ public class PanelA extends JPanel {
         add(searchButton, new GridBagConstraints(3, 11, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
         add(pane, new GridBagConstraints(0, 12, 4, 15, 1, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 150));
         add(label3, new GridBagConstraints(0, 4, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label4, new GridBagConstraints(1, 4, 1, 1, 2, 1,
@@ -88,17 +89,21 @@ public class PanelA extends JPanel {
 
     public void st(){
         init();
-        deleteButton.addActionListener(new DeleteButtonActionListener());
+        deleteButton.addActionListener((ae) -> aliasSay.sayDelete(Integer.parseInt(deleteId.getText())));
         addButton.addActionListener(new AddButtonActionListener());
         searchButton.addActionListener(new SearchButtonActionListener());
         updateButton.addActionListener(new UpdateButtonActionListener());
     }
 
-    class DeleteButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {aliasSay.sayDelete(Integer.parseInt(deleteId.getText()));
-            }
+    public  void showTable(List<Aliases> aliases){
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Id", "alias", "rcpt", "desc"}, 0);
+        for (Aliases o : aliases ) {
+            model.addRow(new Object[]{o.getId(), o.getAlias(), o.getRcpt(), o.getDescription()});
         }
+        table.setModel(model);
+    }
+
+
 
     class AddButtonActionListener implements ActionListener{
         @Override
@@ -112,10 +117,10 @@ public class PanelA extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (aliasSearch.getText().length() >= 1) {
-                search.setText(aliasSay.saySearchAliases(aliasSearch.getText()).toString());}
+                showTable(aliasSay.saySearchAliases(aliasSearch.getText()));}
            else if (rcptSearch.getText().length() >= 1){
-                search.setText(aliasSay.saySearchRcpt(rcptSearch.getText()).toString());}
-            else {search.setText(aliasSay.saySearch().toString());}
+                showTable(aliasSay.saySearchRcpt(rcptSearch.getText()));}
+            else {showTable(aliasSay.saySearch());}
         }
     }
 

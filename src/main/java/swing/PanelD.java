@@ -1,15 +1,14 @@
 package swing;
 
-import sqlEntity.Aliases;
+
 import sqlEntity.Client;
 import sqlEntity.Domain;
 import controler.ClientSay;
 import controler.DomainSay;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
 
 public class PanelD extends JPanel {
 
@@ -34,8 +33,8 @@ public class PanelD extends JPanel {
     private JTextField nameAdd = new JTextField(15);
     private JTextField descriptionAdd = new JTextField(30);
     private JTextField deleteId = new JTextField(5);
-    private JTextArea search = new JTextArea(10, 20);
-    private JScrollPane pane = new JScrollPane(search);
+    private JTable table = new JTable();
+    private JScrollPane pane = new JScrollPane(table);
 
     public void init(){
         setLayout(new GridBagLayout());
@@ -76,49 +75,34 @@ public class PanelD extends JPanel {
         add(searchButton, new GridBagConstraints(3, 6, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
         add(pane, new GridBagConstraints(0, 7, 4, 15, 1, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 0));
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(2,2,2,2), 0, 150));
 
 
     }
 
     public void st(){
         init();
-        deleteButton.addActionListener(new PanelD.DeleteButtonActionListener());
-        addButton.addActionListener(new PanelD.AddButtonActionListener());
-        searchButton.addActionListener(new PanelD.SearchButtonActionListener());
-        updateButton.addActionListener(new PanelD.UpdateButtonActionListener());
-    }
-
-    class DeleteButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            domainSay.sayDelete(Integer.parseInt(deleteId.getText()));
-        }
-    }
-
-    class AddButtonActionListener implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        deleteButton.addActionListener((ae)-> domainSay.sayDelete(Integer.parseInt(deleteId.getText())));
+        addButton.addActionListener((ae)->{
             fk_tb_client = clientSay.saySearchId(Integer.parseInt(clientAdd.getText()));
             domainSay.sayAdd(new Domain(fk_tb_client, nameAdd.getText(), descriptionAdd.getText()));
-        }
-    }
-    class  SearchButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            search.setText(domainSay.saySearch().toString());
-        }
-
-    }
-
-    class UpdateButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        });
+        searchButton.addActionListener((ae)-> showTable(domainSay.saySearch()));
+        updateButton.addActionListener((ae)-> {
             Domain domain = domainSay.saySearchId(Integer.parseInt((idUpdate.getText())));
             if (nameUpdate.getText().length() >= 1){
                 domain.setName(nameUpdate.getText());}
             domain.setDescription(descriptionUpdate.getText());
             domainSay.sayUpdate(domain);
-        }
+        });
     }
+
+    public  void showTable(List<Domain> domains){
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Id", "name", "Fk_tb_client", "desc"}, 0);
+        for (Domain o : domains ) {
+            model.addRow(new Object[]{o.getId(), o.getName(), o.getFk_tb_client(), o.getDescription()});
+        }
+        table.setModel(model);
+    }
+
 }

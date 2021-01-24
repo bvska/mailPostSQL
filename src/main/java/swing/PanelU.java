@@ -10,11 +10,14 @@ import controler.DomainSay;
 import controler.UsersSay;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class PanelU extends JPanel {
+
 
     private AliasSay aliasSay = new AliasSay();
     private Domain fk_tb_domain;
@@ -51,9 +54,10 @@ public class PanelU extends JPanel {
     private Button generateButton = new Button("Сгенерировать пароль");
     private Button updateButton = new Button("Обновить");
     private Button deleteButton = new Button("Удалить");
-    private JTextArea search = new JTextArea(10, 20);
-    private JScrollPane pane = new JScrollPane(search);
     private JCheckBox jcheckAlias = new JCheckBox("создать альяс");
+    private JTable table = new JTable();
+    private JScrollPane pane = new JScrollPane(table);
+
 
     public void init(){
         setLayout(new GridBagLayout());
@@ -67,8 +71,8 @@ public class PanelU extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(searchButton, new GridBagConstraints(5, 12, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
-        add(pane, new GridBagConstraints(0, 13, 6, 15, 2, 1,
-                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
+        add(pane, new GridBagConstraints(0, 13, 6, 15, 5, 5,
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 200));
         add(label3, new GridBagConstraints(0, 4, 1, 1, 2, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL, new Insets(1, 1, 1, 1), 0, 0));
         add(label4, new GridBagConstraints(1, 4, 1, 1, 2, 1,
@@ -124,19 +128,21 @@ public class PanelU extends JPanel {
 
     public void st(){
         init();
-        deleteButton.addActionListener(new PanelU.DeleteButtonActionListener());
+        deleteButton.addActionListener((ae)-> usersSay.sayDelete(Integer.parseInt(deleteId.getText())));
         addButton.addActionListener(new PanelU.AddButtonActionListener());
         searchButton.addActionListener(new PanelU.SearchButtonActionListener());
         updateButton.addActionListener(new PanelU.UpdateButtonActionListener());
         generateButton.addActionListener((ae) -> passAdd.setText(PassGen.passGen()));
     }
 
-    class DeleteButtonActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            usersSay.sayDelete(Integer.parseInt(deleteId.getText()));
+    public  void showTable(List<Users> users){
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Id", "email", "fk", "fk", "passwd", "desc"}, 0);
+        for (Users o : users ) {
+           model.addRow(new Object[]{o.getId(), o.getEmail(), o.getFk_tb_directories().getId(), o.getFk_tb_domain().getId(), o.getPasswd(), o.getDescription()});
         }
+        table.setModel(model);
     }
+
 
     class AddButtonActionListener implements ActionListener{
         @Override
@@ -151,22 +157,30 @@ public class PanelU extends JPanel {
         }
     }
 
-
     class  SearchButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (emailSearch.getText().length() >= 1) {
-                search.setText(usersSay.saySearchEmail(emailSearch.getText()).toString());}
+                showTable(usersSay.saySearchEmail(emailSearch.getText()));}
             else if (domainSearch.getText().length() >= 1){
                 fk_tb_domain = domainSay.saySearchId(Integer.parseInt(domainSearch.getText()));
-                search.setText(usersSay.saySearchDomain(fk_tb_domain).toString());}
-            else {search.setText(usersSay.saySearch().toString());}
+                showTable(usersSay.saySearchDomain(fk_tb_domain));}
+            else {showTable(usersSay.saySearch());}
+
         }
     }
 
     class UpdateButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+/*
+               * for (int i = 0; i < 322; i++) {
+               * Users users = usersSay.saySearchId(i);
+               * if (users != null)
+               * { users.setPasswd("12345678");
+               * usersSay.sayUpdate(users);}
+               * }
+                */
             Users users = usersSay.saySearchId(Integer.parseInt((emailUpdate.getText())));
             if (dirUpdate.getText().length() >= 1){
                 fk_tb_directories = directoriesSay.saySearchId(Integer.parseInt(dirUpdate.getText()));
@@ -177,5 +191,7 @@ public class PanelU extends JPanel {
             usersSay.sayUpdate(users);
         }
     }
+
+
 
 }
