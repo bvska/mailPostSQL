@@ -70,7 +70,11 @@ public class PanelC extends JPanel {
         deleteButton.addActionListener((ae)-> clientSay.sayDelete(Integer.parseInt(deleteId.getText())));
         addButton.addActionListener((ae)-> clientSay.sayAdd(new Client(nameAdd.getText(),descriptionAdd.getText())));
         searchButton.addActionListener((ae)-> showTable(clientSay.saySearch()));
-        updateButton.addActionListener((ae)-> clientSay.sayUpdate(Integer.parseInt(nameUpdate.getText()), descriptionUpdate.getText()));
+        updateButton.addActionListener((ae)-> {
+            Client client = clientSay.saySearchId(Integer.parseInt(nameUpdate.getText()));
+            client.setDescription(descriptionUpdate.getText());
+                clientSay.sayUpdate(client);
+        });
     }
 
     public  void showTable(List<Client> clients){

@@ -17,47 +17,53 @@ public class ClientSay implements Say<Client, Integer> {
     private Connect connect = new Connect(manager);
 
     @Override
-    public void sayDelete(Integer integer){
+    public void sayDelete(Integer integer) {
         try {
             connect.run();
             clientDao.deleteByPK(integer);
             connect.stop();
-        } catch (Exception e) {connect.back();}
+        } catch (Exception e) {
+            connect.back();
+        }
 
     }
 
     @Override
-    public void sayAdd(Client client){
+    public void sayAdd(Client client) {
         try {
             connect.run();
             clientDao.add(client);
             connect.stop();
-        } catch (Exception e) {connect.back();
+        } catch (Exception e) {
+            connect.back();
+        }
     }
 
-    @Override
-    public List<Client> saySearch(){
-        connect.run();
-        List<Client> clients = clientDao.getAll();
-        connect.stop();
-        return clients;
-    }
-
-    @Override
-    public void sayUpdate(Client client){
-        try {
+        @Override
+        public List<Client> saySearch(){
             connect.run();
-            clientDao.update(client);
+            List<Client> clients = clientDao.getAll();
             connect.stop();
-        } catch (Exception e) {connect.back();}
-    }
+            return clients;
+        }
+
+        @Override
+        public void sayUpdate(Client client){
+            try {
+                connect.run();
+                clientDao.update(client);
+                connect.stop();
+            } catch (Exception e) {
+                connect.back();
+            }
+        }
 
 
-    @Override
-    public Client saySearchId(Integer integer){
-        connect.run();
-        Client client = clientDao.getPK(integer);
-        connect.stop();
-        return client;
+        @Override
+        public Client saySearchId (Integer i){
+            connect.run();
+            Client client = clientDao.getPK(i);
+            connect.stop();
+            return client;
+        }
     }
-}

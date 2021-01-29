@@ -40,8 +40,11 @@ public class Client extends IdTable {
     }
 
     public void setName(String name) {
-        JOptionPane.showMessageDialog(null , "Имя должно быть не менее 3х символов","" ,JOptionPane.ERROR_MESSAGE);
-        if (name == null || name.trim().length() < 3) throw new IllegalArgumentException("Имя должно быть не менее 3х символов");
+
+        if (name == null || name.trim().length() < 3) {
+            JOptionPane.showMessageDialog(null , "Имя должно быть не менее 3х символов","" ,JOptionPane.ERROR_MESSAGE);
+            throw new IllegalArgumentException("Имя должно быть не менее 3х символов");}
+
         this.name = name;
     }
 
