@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class AliasSay implements Say<Aliases>{
+public class AliasSay implements Say<Aliases, Integer>{
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
 
@@ -44,6 +44,7 @@ public class AliasSay implements Say<Aliases>{
         return aliases;
     }
 
+    @Override
     public void sayUpdate(Aliases aliases){
         try {
             connect.run();
@@ -66,6 +67,7 @@ public class AliasSay implements Say<Aliases>{
        return aliases;
     }
 
+    @Override
     public Aliases saySearchId(Integer i) {
         connect.run();
         Aliases aliases = aliasesDao.getPK(i);

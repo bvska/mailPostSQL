@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class UsersSay implements Say<Users>{
+public class UsersSay implements Say<Users, Integer>{
 
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
@@ -43,6 +43,7 @@ public class UsersSay implements Say<Users>{
         } catch (Exception e) {connect.back();}
     }
 
+    @Override
     public void sayUpdate(Users users) {
         try {
             connect.run();
@@ -65,6 +66,7 @@ public class UsersSay implements Say<Users>{
         return users;
     }
 
+    @Override
     public Users saySearchId(Integer i) {
         connect.run();
         Users users = usersDao.getPK(i);

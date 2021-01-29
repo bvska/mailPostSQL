@@ -9,13 +9,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class ClientSay {
+public class ClientSay implements Say<Client, Integer> {
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
 
     private ClientDao clientDao = new ClientDao(manager);
     private Connect connect = new Connect(manager);
 
+    @Override
     public void sayDelete(Integer integer){
         try {
             connect.run();
@@ -25,16 +26,16 @@ public class ClientSay {
 
     }
 
-    public String sayAdd(Client client){
+    @Override
+    public void sayAdd(Client client){
         try {
             connect.run();
             clientDao.add(client);
             connect.stop();
-            return "Добавлено";
         } catch (Exception e) {connect.back();
-            return " Не Добавлено";}
     }
 
+    @Override
     public List<Client> saySearch(){
         connect.run();
         List<Client> clients = clientDao.getAll();
@@ -42,14 +43,17 @@ public class ClientSay {
         return clients;
     }
 
-    public void sayUpdate(Integer integer, String s){
+    @Override
+    public void sayUpdate(Client client){
         try {
             connect.run();
-            clientDao.update(integer, s);
+            clientDao.update(client);
             connect.stop();
         } catch (Exception e) {connect.back();}
     }
 
+
+    @Override
     public Client saySearchId(Integer integer){
         connect.run();
         Client client = clientDao.getPK(integer);

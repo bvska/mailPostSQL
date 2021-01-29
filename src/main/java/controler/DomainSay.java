@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class DomainSay implements Say<Domain>{
+public class DomainSay implements Say<Domain, Integer>{
 
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
@@ -44,6 +44,7 @@ public class DomainSay implements Say<Domain>{
         } catch (Exception e) {connect.back();}
     }
 
+    @Override
     public Domain saySearchId(Integer integer){
         connect.run();
         Domain domain = domainDao.getPK(integer);
@@ -51,6 +52,7 @@ public class DomainSay implements Say<Domain>{
         return domain;
     }
 
+    @Override
     public void sayUpdate(Domain domain){
         try {
             connect.run();

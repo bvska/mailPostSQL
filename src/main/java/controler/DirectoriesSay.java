@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class DirectoriesSay implements Say<Directories>{
+public class DirectoriesSay implements Say<Directories, Integer>{
 
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory("entityManager");
     private EntityManager manager = factory.createEntityManager();
@@ -42,6 +42,8 @@ public class DirectoriesSay implements Say<Directories>{
             connect.stop();
         } catch (Exception e) {connect.back();}
     }
+
+    @Override
     public Directories saySearchId(Integer integer){
         connect.run();
         Directories directories = directoriesDao.getPK(integer);
@@ -49,6 +51,7 @@ public class DirectoriesSay implements Say<Directories>{
         return directories;
     }
 
+    @Override
     public void sayUpdate(Directories directories){
         try {
             connect.run();
