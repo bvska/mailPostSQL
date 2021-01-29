@@ -90,7 +90,7 @@ public class PanelT extends JPanel {
         searchButton.addActionListener((ae) -> showTable(transportSay.saySearch()));
         updateButton.addActionListener((ae) -> {
             Transport transport = transportSay.saySearchId(Integer.parseInt((idUpdate.getText())));
-            if (nameUpdate.getText().length() >= 1) {
+            if (nameUpdate.getText().trim().length() >= 1) {
                 transport.setTransport(nameUpdate.getText());
             }
             transport.setDescription(descriptionUpdate.getText());

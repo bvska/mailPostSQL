@@ -182,7 +182,7 @@ public class PanelU extends JPanel {
                * }
                 */
             Users users = usersSay.saySearchId(Integer.parseInt((emailUpdate.getText())));
-            if (dirUpdate.getText().length() >= 1){
+            if (dirUpdate.getText().trim().length() >= 1){
                 fk_tb_directories = directoriesSay.saySearchId(Integer.parseInt(dirUpdate.getText()));
             users.setFk_tb_directories(fk_tb_directories);}
             if (passUpdate.getText().length() >= 1)
