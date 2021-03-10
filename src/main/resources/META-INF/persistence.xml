@@ -16,11 +16,11 @@
 
         <properties>
             <!--строка подключения к бд-->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/maildb"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql:///"/>
             <!--логин пользователя бд-->
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
             <!-- пароль пользователя бд-->
-            <property name="javax.persistence.jdbc.password" value="gthtdthnsi12"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
             <!--используемый драйвер-->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
